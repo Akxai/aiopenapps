@@ -1,0 +1,312 @@
+.blog {
+  height: auto;
+  margin-top: 80px;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  /* overflow-y: scroll; */
+}
+
+.aiupdate {
+  display: flex;
+
+  padding: 0.5rem;
+  width: 100%;
+  height: 3rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.head {
+  color: rgba(0, 255, 242, 1);
+  font-size: 1.1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+.lorem {
+  margin-left: 1rem;
+  font-size: 1.1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+.heading {
+  text-align: center;
+  margin-top: 2rem;
+  color: white;
+}
+
+.header {
+  font-size: 1.85rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+
+.para {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar-corner {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+.image {
+  border-radius: 1rem;
+  width: 19.375rem;
+  height: 11.25rem;
+  object-fit: cover;
+}
+
+.cardpage {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.cards {
+  gap: 1rem;
+  display: flex;
+  width: 73rem;
+  height: 11.25rem;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  background: #4e42b2;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.par {
+  margin-top: 0.5rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.matter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.source {
+  margin-top: auto;
+  margin-bottom: 1rem;
+  display: flex;
+  width: 100%;
+  gap: 0.7rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  margin-left: auto;
+  margin-right: 1rem;
+}
+.ps {
+  font-family: "Montserrat", sans-serif;
+}
+
+@media screen and (max-width: 1200px) {
+  .cards {
+    width: 65rem;
+  }
+  .title {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .cards {
+    width: 60rem;
+  }
+  .title {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .cards {
+    width: 55rem;
+    height: 10rem;
+  }
+  .title {
+    font-size: 1.1rem;
+  }
+  .par {
+    font-size: 0.8rem;
+  }
+  .image {
+    width: 15rem;
+    height: 10rem;
+  }
+  .head {
+    font-size: 0.8rem;
+  }
+  .lorem {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  .cards {
+    width: 50rem;
+    height: 10rem;
+  }
+  .title {
+    font-size: 1.1rem;
+  }
+  .par {
+    font-size: 0.8rem;
+  }
+  .image {
+    width: 15rem;
+    height: 10rem;
+  }
+}
+@media screen and (max-width: 800px) {
+  .cards {
+    width: 40rem;
+    height: 8rem;
+  }
+  .title {
+    font-size: 1rem;
+  }
+  .par {
+    font-size: 0.8rem;
+  }
+  .image {
+    width: 13rem;
+    height: 8rem;
+  }
+}
+@media screen and (max-width: 600px) {
+  .cards {
+    width: 27rem;
+    height: 6rem;
+  }
+  .head {
+    font-size: 0.6rem;
+  }
+  .header {
+    font-size: 1.1rem;
+  }
+  .lorem {
+    font-size: 0.5rem;
+  }
+  .title {
+    font-size: 0.7rem;
+    margin: 0;
+    margin-top: 0.3rem;
+  }
+  .ps {
+    font-size: 0.7rem;
+    margin-top: 0.2rem;
+  }
+  .link {
+    font-size: 0.9rem;
+  }
+  .par {
+    font-size: 0.6rem;
+    margin: 0;
+  }
+  .image {
+    width: 13rem;
+    height: 6rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .blog {
+    overflow-x: hidden;
+  }
+  .cardpage {
+    gap: 0;
+  }
+  .cards {
+    width: 20rem;
+    height: 6rem;
+  }
+
+  .head {
+    font-size: 0.6rem;
+  }
+  .header {
+    font-size: 1.1rem;
+  }
+  .lorem {
+    font-size: 0.5rem;
+  }
+  .title {
+    font-size: 0.7rem;
+    margin: 0;
+    margin-top: 0.2rem;
+  }
+  .ps {
+    font-size: 0.5rem;
+  }
+  .link {
+    font-size: 0.6rem;
+    margin-left: 2.5rem;
+    display: flex;
+    width: 70px;
+  }
+  .matter {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .source {
+    margin-top: 0.2rem;
+    width: 100%;
+
+    align-items: flex-end;
+  }
+  .par {
+    font-size: 0.5rem;
+    margin: 0;
+  }
+  .img {
+    width: 9rem;
+  }
+  .image {
+    width: 6rem;
+    position: absolute;
+    height: 6rem;
+    object-fit: fill;
+  }
+  .aiupdate {
+    display: none;
+  }
+  .para {
+    font-size: 0.6rem;
+  }
+}

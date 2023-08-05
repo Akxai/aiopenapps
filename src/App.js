@@ -9,6 +9,7 @@ import User from "./components/User";
 import Tool from "./pages/Tool";
 import Sponsor from "./pages/Sponsor";
 import Contact from "./pages/Contact";
+import Blog from "./pages/Blog";
 
 function App() {
   const [contentLoaded, setContentLoaded] = useState(false);
@@ -30,6 +31,7 @@ function App() {
           <Route path="/submit/tool" element={<Tool />} />
           <Route path="/submit/sponsor" element={<Sponsor />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
         </Routes>
       </div>
       {contentLoaded && <Footer />}

@@ -120,7 +120,7 @@ export default function Header() {
               className="text-[18px] py-2 font-semibold font-mont leading-6 text-white cursor-pointer hover:text-[#FF9900] group relative"
             >
               Dashboard
-              <div className="dropdown-menu absolute z-10 text-center hidden group-hover:block bottom-[-130px] left-[-10px]">
+              <div className="dropdown-menu absolute z-10 text-center hidden group-hover:block bottom-[-170px] left-[-10px]">
                 <ul className="flex flex-col px-[11px] rounded-lg bg-white">
                   <Link to="/submit">
                     <li className="font-mont cursor-pointer pt-2 text-black hover:bg-gray-100 w-full px-4 py-1 rounded-lg">
@@ -130,6 +130,11 @@ export default function Header() {
                   <Link to="/">
                     <li className="font-mont cursor-pointer text-black hover:bg-gray-100 w-full px-4 py-1 rounded-lg">
                       Learn
+                    </li>
+                  </Link>
+                  <Link to="/blog">
+                    <li className="font-mont cursor-pointer text-black hover:bg-gray-100 w-full px-4 py-1 rounded-lg">
+                      Blog
                     </li>
                   </Link>
                   <Link to="/submit/tool">
@@ -229,6 +234,14 @@ export default function Header() {
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-[16px] font-mont font-semibold leading-7 text-white hover:text-[#FF9900]"
                 >
                   {user ? "Dashboard" : "Login"}
+                </a>
+              </div>
+              <div className="flex justify-center">
+                <a
+                  href="/blog"
+                  className="-mx-3 block rounded-lg px-3 py-2.5 text-[16px] font-mont font-semibold leading-7 text-white hover:text-[#FF9900]"
+                >
+                  {user ? "Blog" : ""}
                 </a>
               </div>
               <div className="flex justify-center">
