@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#2B2B2B] px-16 py-8 flex flex-col lg:flex-row justify-between text-white font-mont">
+    <footer className="bg-[#2B2B2B] px-12 py-8 flex flex-col lg:flex-row justify-between text-white font-mont">
       <div className="flex flex-col justify-between gap-y-4 pb-3 items-center lg:items-start">
         <Link to="/">
           <img
@@ -19,19 +19,19 @@ export default function Footer() {
           © ai openapps, 2023. | We make people smart
         </p>
       </div>
-      <div className="flex gap-x-16 mt-4 lg:mt-0 flex-wrap">
-        <div className="flex flex-col gap-y-3 mb-5">
+      <div className="flex gap-x-[1rem] mt-4 lg:mt-0 flex-wrap">
+        <div className="flex flex-col gap-y-3 mb-5 mr-2">
           <p className="font-bold text-[15px]">Menu</p>
           <ul className="flex flex-col gap-y-2">
             <a href="#">
               <li className="text-[13px]">Home</li>
             </a>
-            {/* <a href="#">
+            <a href="#">
               <li className="text-[13px]">Top 100</li>
             </a>
             <a href="#">
               <li className="text-[13px]">Trending AI</li>
-            </a> */}
+            </a>
           </ul>
         </div>
         <div className="flex flex-col gap-y-3 mb-5">
@@ -40,9 +40,9 @@ export default function Footer() {
             <a href="/submit/tool">
               <li className="text-[13px]">Submit</li>
             </a>
-            {/* <a href="#">
+            <a href="/blog">
               <li className="text-[13px]">Blogs</li>
-            </a> */}
+            </a>
           </ul>
         </div>
         <div className="flex flex-col gap-y-3 mb-5">
@@ -56,7 +56,7 @@ export default function Footer() {
             </a>
           </ul>
         </div>
-        <div className="ml-14">
+        <div className="mx-auto">
           <Link
             to="/submit/tool"
             className="bg-[#9747FF] flex justify-center items-center py-1.5 font-mont font-medium rounded-md w-full"
