@@ -34,7 +34,7 @@ export default function Footer() {
             </a>
           </ul>
         </div>
-        <div className="flex flex-col gap-y-3 mb-5">
+        <div className="flex flex-col gap-y-3 mb-5 mr-1">
           <p className="font-bold text-[15px]">Community</p>
           <ul className="flex flex-col gap-y-2">
             <a href="/submit/tool">
