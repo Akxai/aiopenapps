@@ -19,7 +19,7 @@ export default function Footer() {
           © ai openapps, 2023. | We make people smart
         </p>
       </div>
-      <div className="flex gap-x-[1rem] mt-4 lg:mt-0 flex-wrap">
+      <div className="flex gap-x-[1rem] md:gap-x-16 lg:gap-x-16 mt-4 lg:mt-0 flex-wrap">
         <div className="flex flex-col gap-y-3 mb-5 mr-2">
           <p className="font-bold text-[15px]">Menu</p>
           <ul className="flex flex-col gap-y-2">
