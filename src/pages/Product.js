@@ -4,17 +4,45 @@ import Carousel from "../components/Carousel";
 import { useParams } from "react-router-dom";
 import sanityClient from "../client.js";
 import { BiLinkExternal } from "react-icons/bi";
+import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
+
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  runTransaction,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { db } from "../firebase.js";
+
+import { useUserContext } from "../components/UserContext";
+
+import { useAuth } from "../components/AuthContext";
 
 export default function Product() {
   const location = useLocation();
   const { slug } = useParams();
   const [productData, setProductData] = useState(null);
 
+  const useA = useAuth();
+  // console.log("User Data:", useA);
+
+  const { user, setUser } = useUserContext();
+  // console.log(user);
+
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
   useEffect(() => {
     sanityClient
       .fetch(
         `*[_type == "post" && slug.current == $slug]{
           title,
+          slug,
           tags,
           description,
           price,
@@ -24,7 +52,7 @@ export default function Product() {
               url
             },
             alt
-          },  
+          },
           mainImage{
             asset->{
               url
@@ -65,6 +93,59 @@ export default function Product() {
     return <div>Loading...</div>;
   }
 
+  const addBookmark = async (bookmarkId) => {
+    console.log(bookmarkId);
+
+    if (!useA.uid || !productData || !productData.slug) {
+      console.error("User UID, productData, or productData.slug is undefined.");
+      alert("Please log in!");
+      return;
+    }
+
+    try {
+      const querySnapshot = await getDocs(collection(db, "users"));
+
+      // Create a flag to check if the user was found
+      let userFound = false;
+
+      querySnapshot.forEach((doc) => {
+        const userData = doc.data();
+
+        if (userData.uid === useA.uid) {
+          userFound = true;
+
+          if (!userData.bookmarks) {
+            userData.bookmarks = [];
+          }
+
+          const slugIndex = userData.bookmarks.indexOf(
+            productData.slug.current
+          );
+
+          if (slugIndex === -1) {
+            // The slug is not in the bookmarks, so add it
+            userData.bookmarks.push(productData.slug.current);
+            setDoc(doc.ref, userData);
+            console.log("Bookmark added successfully");
+            setIsBookmarked(true);
+          } else {
+            // The slug is already in the bookmarks, so remove it
+            userData.bookmarks.splice(slugIndex, 1);
+            setDoc(doc.ref, userData);
+            console.log("Bookmark removed successfully");
+            setIsBookmarked(false);
+          }
+        }
+      });
+
+      if (!userFound) {
+        console.error("User document not found.");
+      }
+    } catch (error) {
+      console.error("Error adding/removing bookmark:", error);
+    }
+  };
+
   return (
     <div>
       <div className="px-6 md:px-[20%] md:mt-[150px] mt-[100px]">
@@ -90,7 +171,7 @@ export default function Product() {
           />
         )}
       </div>
-
+      {/* {console.log(productData)} */}
       <div className="flex flex-col space-y-2 md:flex-row md:justify-between md:items-center px-4 md:px-40">
         <div className="flex flex-col space-y-2">
           <div>
@@ -123,6 +204,16 @@ export default function Product() {
             className="bg-[#6D5DF3] px-3 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
           >
             {productData.price}
+          </button>
+          <button
+            className="bg-[#6D5DF3] px-5 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
+            onClick={() => addBookmark(productData.slug.current, useA.uid)}
+          >
+            {isBookmarked ? (
+              <BsFillBookmarkFill className="w-6 h-6" />
+            ) : (
+              <BsBookmark className="w-6 h-6" />
+            )}
           </button>
           <Link
             to={productData.url}

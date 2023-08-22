@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { auth, provider } from "../firebase";
+import { auth, db, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
 import { useUserContext } from "../components/UserContext";
 import { Link } from "react-router-dom";
 import { signInWithRedirect } from "firebase/auth";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 export default function Submit() {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -23,13 +24,43 @@ export default function Submit() {
   }, []);
 
   const handleGoogleSignIn = () => {
+    console.log("Google Sign-In Clicked");
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(async (result) => {
         console.log(result);
         const res = result.user.displayName;
         setRes(res);
         setUser(result.user);
         setLoggedIn(true);
+
+        console.log("Result", result);
+        const userRef = collection(db, "users");
+        const email = result.user.email;
+
+        // Check if a document with the user's email already exists
+        const querySnapshot = await getDocs(
+          query(userRef, where("email", "==", email))
+        );
+
+        if (querySnapshot.size === 0) {
+          // Document with this email does not exist, so create a new one
+          const userData = {
+            uid: result.user.uid,
+            displayName: result.user.displayName,
+            email: email,
+            bookmarks: [],
+          };
+
+          console.log("User Data:", userData);
+
+          addDoc(userRef, userData)
+            .then(() => {
+              console.log("User data added successfully.");
+            })
+            .catch((error) => {
+              console.error("Error adding user data:", error);
+            });
+        }
 
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("displayName", res);
@@ -59,6 +90,7 @@ export default function Submit() {
       setUser(null);
     }
   }, []);
+
   return (
     <div className="mb-8">
       {isLoggedIn ? (

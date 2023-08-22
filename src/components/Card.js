@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import sanityClient from "../client.js";
 
+import { useUserContext } from "./UserContext";
+
 export default function Card({ category, priceCategory, searchTerm }) {
   const [postData, setPost] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
@@ -89,62 +91,6 @@ export default function Card({ category, priceCategory, searchTerm }) {
     </main>
   );
 }
-
-// function CardItem({ post }) {
-//   return (
-//     <a href={"/product/" + post.slug.current} key={post.slug.current}>
-//       <div className="w-full card">
-//         <img
-//           className="rounded-t-3xl object-cover card-image"
-//           src={post.mainImage.asset.url}
-//           alt={post.mainImage.alt}
-//           width={360}
-//           height={240}
-//         />
-//         <div className="py-4 px-4 border border-black rounded-b-3xl bg-white">
-//           <div className="flex justify-between items-center">
-//             <h1 className="font-bold font-mont text-[20px]">{post.title}</h1>
-//             {post.price && (
-//               <div className="font-mont font-semibold text-white text-[8px] bg-black rounded-md px-3 py-1.5 flex justify-center items-center">
-//                 {post.price}
-//               </div>
-//             )}
-//           </div>
-//           <div className="mt-2 flex flex-wrap">
-//             <p className="font-mont font-semibold text-[10px] leading-3 flex flex-wrap max-w-[320px]">
-//               {/* {post.body[0].children[0].text} */}
-//               {/* {post.body &&
-//                 post.body[0]?.children &&
-//                 post.body[0].children[0]?.text} */}
-//               {post.body &&
-//                 post.body[0]?.children &&
-//                 post.body[0].children[0]?.text.slice(0, 100) +
-//                   (post.body[0].children[0].text.length > 100 ? "..." : "")}
-//             </p>
-//           </div>
-
-//           <div className="mt-3 flex justify-start gap-x-2 items-center">
-//             {post.subCategories &&
-//               post.subCategories.map((subcategory, index) => (
-//                 <p
-//                   key={index}
-//                   className="bg-[#909090] text-white font-medium font-mont text-[8px] px-2 py-1 rounded-md"
-//                 >
-//                   {subcategory}
-//                 </p>
-//               ))}
-//           </div>
-
-//           <div className="flex justify-start items-center mt-3">
-//             <button className="font-mont text-white bg-black text-[8px] font-semibold px-3 py-1.5 rounded-md">
-//               Visit Page
-//             </button>
-//           </div>
-//         </div>
-//       </div>
-//     </a>
-//   );
-// }
 
 function CardItem({ post }) {
   return (

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { user, setUser } = useUserContext();
-  console.log(user);
+  // console.log(user);
   const [logged, setLogged] = useState(false);
 
   useEffect(() => {

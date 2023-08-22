@@ -1,4 +1,13 @@
-import { addDoc, collection } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase";
 import "animate.css";
@@ -48,12 +57,45 @@ export default function Tool() {
   }, []);
 
   const handleGoogleSignIn = () => {
+    console.log("Google Sign-In Clicked");
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(async (result) => {
+        console.log(result);
+        const res = result.user.displayName;
         setUser(result.user);
         setLoggedIn(true);
 
+        console.log("Result", result);
+        const userRef = collection(db, "users");
+        const email = result.user.email;
+
+        // Check if a document with the user's email already exists
+        const querySnapshot = await getDocs(
+          query(userRef, where("email", "==", email))
+        );
+
+        if (querySnapshot.size === 0) {
+          // Document with this email does not exist, so create a new one
+          const userData = {
+            uid: result.user.uid,
+            displayName: result.user.displayName,
+            email: email,
+            bookmarks: [],
+          };
+
+          console.log("User Data:", userData);
+
+          addDoc(userRef, userData)
+            .then(() => {
+              console.log("User data added successfully.");
+            })
+            .catch((error) => {
+              console.error("Error adding user data:", error);
+            });
+        }
+
         localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("displayName", res);
 
         const expirationTime = new Date().getTime() + 3600000;
         localStorage.setItem("loginExpiration", expirationTime);
@@ -73,7 +115,6 @@ export default function Tool() {
   const handleOptionSelect = (option) => {
     setSelectedOption(option);
     setShowOptions(false);
-    // Set the selected option in the main input state
     setInputs({
       ...inputs,
       priceCategory: option,
