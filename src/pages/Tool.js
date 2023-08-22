@@ -86,6 +86,7 @@ export default function Tool() {
       [e.target.name]: e.target.value,
     });
   };
+  const form = document.getElementById("myForm");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -95,6 +96,9 @@ export default function Tool() {
     };
     try {
       await addDoc(collection(db, "tools"), newData);
+      alert("Form Submitted Successfully, Thank You!");
+      form.reset();
+      document.getElementById("hidden-price-category").selectedIndex = 0;
     } catch (error) {
       console.error("Error adding document:", error);
     }
@@ -108,7 +112,7 @@ export default function Tool() {
             Submit New AI Tool
           </h1>
           <div className=" my-8 font-mont ">
-            <form onSubmit={handleSubmit} className="">
+            <form onSubmit={handleSubmit} id="myForm" className="">
               <div className="bg-[#7364F4] py-7 lg:px-[5%] md:px-[5%] px-[3%] flex flex-col space-y-5 rounded-xl font-mont">
                 {/* ... (rest of the input fields) */}
                 <div>

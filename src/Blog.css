@@ -85,6 +85,7 @@
   margin: 0 auto;
   gap: 2rem;
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .cards {
@@ -96,7 +97,7 @@
   border-radius: 1.25rem;
   background: #4e42b2;
   color: white;
-  margin-bottom: 1rem;
+  margin-top: 0;
 }
 
 .title {
@@ -128,12 +129,15 @@
   align-items: center;
 }
 
-.link {
+.links {
   text-decoration: none;
   color: white;
   font-family: "Montserrat", sans-serif;
   margin-left: auto;
   margin-right: 1rem;
+}
+.link {
+  display: none;
 }
 .ps {
   font-family: "Montserrat", sans-serif;
@@ -249,11 +253,13 @@
     overflow-x: hidden;
   }
   .cardpage {
-    gap: 0;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
   }
   .cards {
-    width: 20rem;
-    height: 6rem;
+    width: 22rem;
+    height: 10rem;
+    gap: 1rem;
   }
 
   .head {
@@ -268,39 +274,45 @@
   .title {
     font-size: 0.7rem;
     margin: 0;
-    margin-top: 0.2rem;
+    margin-top: 0.6rem;
   }
   .ps {
     font-size: 0.5rem;
+    margin: 0;
   }
   .link {
     font-size: 0.6rem;
     margin-left: 2.5rem;
     display: flex;
-    width: 70px;
+    justify-content: flex-end;
+    width: auto;
+    margin-bottom: 0.2rem;
+  }
+
+  .linkk {
+    margin-left: auto;
+    margin-right: 0.7rem;
+    margin-bottom: 0.2rem;
   }
   .matter {
+    width: 10rem;
     height: 100%;
-    padding: 0;
+    padding: 0.3rem 0.1rem;
     margin: 0;
   }
-  .source {
-    margin-top: 0.2rem;
-    width: 100%;
 
-    align-items: flex-end;
-  }
   .par {
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     margin: 0;
   }
   .img {
-    width: 9rem;
+    width: 16rem;
+    height: 100%;
   }
   .image {
-    width: 6rem;
-    position: absolute;
-    height: 6rem;
+    width: 16rem;
+    /* position: absolute; */
+    height: 100%;
     object-fit: fill;
   }
   .aiupdate {
@@ -308,5 +320,14 @@
   }
   .para {
     font-size: 0.6rem;
+  }
+  .source {
+    width: 10rem;
+    display: flex;
+    padding-right: 0.8rem;
+    margin-top: 0.3rem;
+  }
+  .links {
+    display: none;
   }
 }

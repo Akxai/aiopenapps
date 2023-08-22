@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <footer className="bg-[#2B2B2B] px-12 py-8 flex flex-col lg:flex-row justify-between text-white font-mont">
-      <div className="flex flex-col justify-between gap-y-4 pb-3 items-center lg:items-start">
+      <div className="flex flex-col justify-start gap-y-4 pb-3 items-center lg:items-start">
         <Link to="/">
           <img
             src="/logo.png"
@@ -15,26 +15,26 @@ export default function Footer() {
             className="w-[212px] mx-auto lg:mx-0 cursor-pointer"
           />
         </Link>
-        <p className="text-[15px] text-center lg:text-left">
+        <p className="md:text-[15px] lg:text-[15px] text-[12px] text-center lg:text-left">
           © ai openapps, 2023. | We make people smart
         </p>
       </div>
-      <div className="flex gap-x-[1rem] md:gap-x-16 lg:gap-x-16 mt-4 lg:mt-0 flex-wrap">
-        <div className="flex flex-col gap-y-3 mb-5 mr-2">
+      <div className="flex gap-x-[1rem] md:gap-x-16 lg:gap-x-16 mt-4 lg:mt-0 flex-wrap my-4">
+        <div className="flex flex-col gap-y-3 mb-5 lg:mr-2 md:mr-2 mr-5">
           <p className="font-bold text-[15px]">Menu</p>
           <ul className="flex flex-col gap-y-2">
             <a href="#">
               <li className="text-[13px]">Home</li>
             </a>
-            <a href="#">
+            {/* <a href="#">
               <li className="text-[13px]">Top 100</li>
             </a>
             <a href="#">
               <li className="text-[13px]">Trending AI</li>
-            </a>
+            </a> */}
           </ul>
         </div>
-        <div className="flex flex-col gap-y-3 mb-5 mr-1">
+        <div className="flex flex-col gap-y-3 mb-5 lg:mr-1 md:mr-1 mr-3">
           <p className="font-bold text-[15px]">Community</p>
           <ul className="flex flex-col gap-y-2">
             <a href="/submit/tool">
@@ -56,7 +56,7 @@ export default function Footer() {
             </a>
           </ul>
         </div>
-        <div className="mx-auto">
+        <div className="mx-auto mt-4 md:mt-0 lg:mt-0">
           <Link
             to="/submit/tool"
             className="bg-[#9747FF] flex justify-center items-center py-1.5 font-mont font-medium rounded-md w-full"

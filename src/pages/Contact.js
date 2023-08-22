@@ -64,7 +64,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="mt-32 lg:px-[20%] md:px-[20%] px-[3%]">
+    <div className="mt-32 mb-16 lg:px-[20%] md:px-[20%] px-[3%]">
       <p className="text-center my-4 font-mont text-white font-semibold text-[30px] md:text-[40px] lg:text-[40px] mt-6">
         Contact Us
       </p>

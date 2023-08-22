@@ -18,14 +18,13 @@ export default function Home() {
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
-
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
   const handlePriceCategoryClick = (priceCategory) => {
     setSelectedPriceCategory(priceCategory);
     setSearchTerm("");
+  };
+
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
   };
 
   return (
