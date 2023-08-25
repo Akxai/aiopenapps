@@ -109,3 +109,7 @@ footer {
 .card {
   animation: slideInFromBottom 1s ease-out;
 }
+
+.bookmark-card {
+  transition: transform 0.3s ease-in-out;
+}

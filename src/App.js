@@ -10,6 +10,7 @@ import Tool from "./pages/Tool";
 import Sponsor from "./pages/Sponsor";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
+import Bookmark from "./pages/Bookmark";
 
 import { AuthProvider } from "./components/AuthContext";
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/user" element={<User />} />
             <Route path="/submit/tool" element={<Tool />} />
             <Route path="/submit/sponsor" element={<Sponsor />} />
+            <Route path="/submit/bookmark" element={<Bookmark />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
           </Routes>

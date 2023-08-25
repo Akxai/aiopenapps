@@ -5,10 +5,12 @@ import { useUserContext } from "../components/UserContext";
 import { Link } from "react-router-dom";
 import { signInWithRedirect } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { useAuth } from "../components/AuthContext";
 
 export default function Submit() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [res, setRes] = useState("");
+  const useA = useAuth();
 
   const { setUser } = useUserContext();
 
@@ -50,6 +52,7 @@ export default function Submit() {
             email: email,
             bookmarks: [],
           };
+          // localStorage.setItem("uid", result.user.uid);
 
           console.log("User Data:", userData);
 
@@ -63,6 +66,7 @@ export default function Submit() {
         }
 
         localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("uid", result.user.uid);
         localStorage.setItem("displayName", res);
 
         const expirationTime = new Date().getTime() + 3600000;
@@ -77,6 +81,7 @@ export default function Submit() {
     setRes("");
     setLoggedIn(false);
     localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("uid");
     localStorage.removeItem("displayName");
     localStorage.removeItem("loginExpiration");
 
@@ -101,8 +106,8 @@ export default function Submit() {
           <h2 className="text-white font-semibold text-[40px] mt-4 font-mont">
             Dashboard
           </h2>
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-x-14 mt-10">
-            <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full md:w-[600px] h-[300px] shadow-xl">
+          <div className="flex flex-col md:flex-row lg:flex-row gap-4 md:gap-8 lg:gap-x-14 mt-10">
+            <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full md:w-[600px] lg:w-[600px] h-[300px] shadow-xl">
               <div>
                 <svg
                   width="68"
@@ -135,7 +140,7 @@ export default function Submit() {
                 </Link>
               </div>
             </div>
-            <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full md:w-[600px] h-[300px] shadow-xl">
+            <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full md:w-[600px] lg:w-[600px] h-[300px] shadow-xl">
               <div>
                 <svg
                   width="62"
@@ -170,6 +175,42 @@ export default function Submit() {
                   className="mr-auto text-[18px] font-bold font-mont"
                 >
                   Sponsor Now
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row lg:flex-row gap-4 md:gap-8 lg:gap-x-14 mt-6">
+            <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full  h-[300px] shadow-xl">
+              <div>
+                <svg
+                  width="57"
+                  height="85"
+                  viewBox="0 0 57 85"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M51.3 0H17.1C15.5888 0.00198254 14.14 0.691491 13.0714 1.91726C12.0028 3.14303 11.4017 4.80496 11.4 6.53846V13.0769H5.7C4.1888 13.0789 2.73998 13.7684 1.6714 14.9942C0.602817 16.22 0.0017283 17.8819 0 19.6154V81.7308C1.68195e-05 82.3315 0.144307 82.9205 0.417031 83.4333C0.689754 83.9461 1.08037 84.3628 1.546 84.6377C2.01163 84.9125 2.53427 85.0349 3.05656 84.9914C3.57884 84.9479 4.08058 84.7402 4.5067 84.391L22.7976 69.4021L41.0936 84.391C41.5197 84.7402 42.0215 84.9479 42.5437 84.9914C43.066 85.0349 43.5886 84.9125 44.0542 84.6377C44.5198 84.3628 44.9104 83.9461 45.1831 83.4333C45.4558 82.9205 45.6 82.3314 45.6 81.7308V65.6665L52.4936 71.3141C52.9197 71.6632 53.4215 71.871 53.9437 71.9145C54.466 71.958 54.9886 71.8356 55.4542 71.5607C55.9198 71.2859 56.3104 70.8692 56.5831 70.3564C56.8558 69.8436 57 69.2545 57 68.6538V6.53846C56.9983 4.80496 56.3972 3.14303 55.3286 1.91726C54.26 0.691491 52.8112 0.00198254 51.3 0ZM51.3 62.3013L45.6 57.6318V19.6154C45.5983 17.8819 44.9972 16.22 43.9286 14.9942C42.86 13.7684 41.4112 13.0789 39.9 13.0769H17.1V6.53846H51.3V62.3013Z"
+                    fill="black"
+                  />
+                </svg>
+              </div>
+              <div className="flex flex-col space-y-4">
+                <h3 className="font-mont underline underline-offset-[7px] md:text-[32px] lg:text-[32px] text-[26px] font-semibold leading-[39.01px]">
+                  Bookmarks
+                </h3>
+                <p className="md:text-[14px] lg:text-[14px] text-[10px] leading-[17.01px] font-mont">
+                  Explore and access your favorite AI resources in one place!
+                  Organize your bookmarks for quick and easy retrieval,
+                  simplifying your AI exploration with just a few clicks. Stay
+                  efficient and informed with our curated collection at your
+                  fingertips.
+                </p>
+                <Link
+                  to={"/submit/bookmark"}
+                  className="mr-auto text-[18px] font-bold font-mont"
+                >
+                  Access Here
                 </Link>
               </div>
             </div>

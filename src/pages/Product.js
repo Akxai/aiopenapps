@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import { useParams } from "react-router-dom";
 import sanityClient from "../client.js";
 import { BiLinkExternal } from "react-icons/bi";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
+import { useMemo } from "react";
 
 import {
   addDoc,
@@ -29,11 +30,30 @@ export default function Product() {
   const { slug } = useParams();
   const [productData, setProductData] = useState(null);
 
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
+
+  const [userBookmarks, setUserBookmarks] = useState([]);
+
   const useA = useAuth();
   // console.log("User Data:", useA);
 
+  const memoizedUser = useMemo(() => {
+    console.log("User Data:", useA);
+    return useA;
+  }, [useA]);
+
   const { user, setUser } = useUserContext();
   // console.log(user);
+
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const isLoggedInStorage = localStorage.getItem("isLoggedIn");
+    if (isLoggedInStorage === "true") {
+      const displayName = localStorage.getItem("displayName");
+      setLoggedIn(true);
+    }
+  }, []);
 
   const [isBookmarked, setIsBookmarked] = useState(false);
 
@@ -89,6 +109,47 @@ export default function Product() {
     }
   }, [location.pathname]);
 
+  const currentUserData = localStorage.getItem("uid");
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Fetch user document
+        const querySnapshot = await getDocs(collection(db, "users"));
+        console.log("fetch bookmark called");
+
+        // Create a flag to check if the user was found
+        let userFound = false;
+        let userBookmarks = []; // Initialize an array to hold the bookmarks
+
+        querySnapshot.forEach((doc) => {
+          const userData = doc.data();
+          if (userData.uid === currentUserData) {
+            userFound = true;
+            userBookmarks = userData.bookmarks;
+          }
+        });
+
+        if (!userFound) {
+          console.log("User not found.");
+        }
+        setUserBookmarks(userBookmarks);
+        return userBookmarks;
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        return [];
+      }
+    };
+
+    fetchUserData()
+      .then((bookmarks) => {
+        setUserBookmarks(bookmarks);
+      })
+      .catch((error) => {
+        console.error("Error fetching bookmarks:", error);
+      });
+  }, [ignored]);
+
   if (!productData) {
     return <div>Loading...</div>;
   }
@@ -126,13 +187,21 @@ export default function Product() {
             // The slug is not in the bookmarks, so add it
             userData.bookmarks.push(productData.slug.current);
             setDoc(doc.ref, userData);
+            localStorage.setItem("bookmarks", userData.bookmarks);
+            userData.bookmarks.map((bookmark, index) =>
+              console.log(index, bookmark)
+            );
             console.log("Bookmark added successfully");
+            console.log("User bookmarks", userData.bookmarks);
             setIsBookmarked(true);
           } else {
             // The slug is already in the bookmarks, so remove it
             userData.bookmarks.splice(slugIndex, 1);
             setDoc(doc.ref, userData);
+            localStorage.setItem("bookmarks", userData.bookmarks);
             console.log("Bookmark removed successfully");
+            console.log("User bookmarks", userData.bookmarks);
+
             setIsBookmarked(false);
           }
         }
@@ -144,7 +213,12 @@ export default function Product() {
     } catch (error) {
       console.error("Error adding/removing bookmark:", error);
     }
+    forceUpdate();
   };
+
+  //   console.log(currentUserData);
+
+  // const docRef = doc(db, "users", "Hx3dIumCLX2YgpqyzxJl");
 
   return (
     <div>
@@ -198,23 +272,32 @@ export default function Product() {
             </div>
           </div>
         </div>
-        <div className="flex justify-between items-center space-x-2">
+        <div className="flex items-center space-x-2">
           <button
             href=""
-            className="bg-[#6D5DF3] px-3 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
+            className="bg-[#6D5DF3] px-3 py-[6px] lg:py-[5px] xl:py-[5px] md:py-[5px] text-white font-mont text-sm md:text-base font-semibold rounded-md"
           >
             {productData.price}
           </button>
-          <button
-            className="bg-[#6D5DF3] px-5 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
-            onClick={() => addBookmark(productData.slug.current, useA.uid)}
-          >
-            {isBookmarked ? (
-              <BsFillBookmarkFill className="w-6 h-6" />
-            ) : (
-              <BsBookmark className="w-6 h-6" />
-            )}
-          </button>
+
+          {isLoggedIn && (
+            <button
+              className="bg-[#6D5DF3] px-5 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
+              onClick={() => addBookmark(productData.slug.current, useA.uid)}
+            >
+              {/* {isBookmarked ? (
+                <BsFillBookmarkFill className="w-6 h-6" />
+              ) : (
+                <BsBookmark className="w-6 h-6" />
+              )} */}
+              {userBookmarks.includes(productData.slug.current) ? (
+                <BsFillBookmarkFill className="w-6 h-6" />
+              ) : (
+                <BsBookmark className="w-6 h-6" />
+              )}
+            </button>
+          )}
+
           <Link
             to={productData.url}
             target="_blank"

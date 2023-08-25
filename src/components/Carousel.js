@@ -72,7 +72,7 @@ function CarouselItem({ post }) {
             height={240}
           />
         )}
-        <div className="py-4 px-4 border border-black rounded-b-3xl">
+        <div className="py-4 px-4 border border-black rounded-b-3xl bg-white">
           <div className="flex justify-between items-center">
             <h1 className="font-bold font-mont text-[20px]">{post.title}</h1>
             {/* {post.categories && post.categories.length > 0 && (

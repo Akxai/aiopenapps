@@ -16,7 +16,10 @@ import { useUserContext } from "../components/UserContext";
 import { auth, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
 
+import { useAuth } from "../components/AuthContext";
+
 export default function Tool() {
+  const useA = useAuth();
   const { user, setUser } = useUserContext();
   const [inputs, setInputs] = useState({
     toolName: "",
@@ -82,6 +85,7 @@ export default function Tool() {
             email: email,
             bookmarks: [],
           };
+          localStorage.setItem("uid", result.user.uid);
 
           console.log("User Data:", userData);
 
@@ -95,6 +99,7 @@ export default function Tool() {
         }
 
         localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("uid", result.user.uid);
         localStorage.setItem("displayName", res);
 
         const expirationTime = new Date().getTime() + 3600000;

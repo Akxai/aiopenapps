@@ -23,7 +23,7 @@ export default function Footer() {
         <div className="flex flex-col gap-y-3 mb-5 lg:mr-2 md:mr-2 mr-5">
           <p className="font-bold text-[15px]">Menu</p>
           <ul className="flex flex-col gap-y-2">
-            <a href="#">
+            <a href="/">
               <li className="text-[13px]">Home</li>
             </a>
             {/* <a href="#">
