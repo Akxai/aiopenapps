@@ -7,18 +7,7 @@ import { BiLinkExternal } from "react-icons/bi";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { useMemo } from "react";
 
-import {
-  addDoc,
-  arrayUnion,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  runTransaction,
-  setDoc,
-  updateDoc,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, setDoc } from "firebase/firestore";
 import { db } from "../firebase.js";
 
 import { useUserContext } from "../components/UserContext";
@@ -216,10 +205,6 @@ export default function Product() {
     forceUpdate();
   };
 
-  //   console.log(currentUserData);
-
-  // const docRef = doc(db, "users", "Hx3dIumCLX2YgpqyzxJl");
-
   return (
     <div>
       <div className="px-6 md:px-[20%] md:mt-[150px] mt-[100px]">
@@ -245,7 +230,7 @@ export default function Product() {
           />
         )}
       </div>
-      {/* {console.log(productData)} */}
+
       <div className="flex flex-col space-y-2 md:flex-row md:justify-between md:items-center px-4 md:px-40">
         <div className="flex flex-col space-y-2">
           <div>
@@ -285,11 +270,6 @@ export default function Product() {
               className="bg-[#6D5DF3] px-5 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
               onClick={() => addBookmark(productData.slug.current, useA.uid)}
             >
-              {/* {isBookmarked ? (
-                <BsFillBookmarkFill className="w-6 h-6" />
-              ) : (
-                <BsBookmark className="w-6 h-6" />
-              )} */}
               {userBookmarks.includes(productData.slug.current) ? (
                 <BsFillBookmarkFill className="w-6 h-6" />
               ) : (
@@ -308,7 +288,7 @@ export default function Product() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-10 mt-6 md:mt-8 px-4 md:px-10 lg:px-20 xl:px-40 mb-14">
+      <div className="flex flex-col justify-between md:flex-row space-y-4 md:space-y-0 md:space-x-10 mt-6 md:mt-8 px-4 md:px-10 lg:px-20 xl:px-40 mb-14">
         <p className="font-mont font-semibold text-lg md:text-xl leading-[24px] md:leading-[29px] text-justify">
           {productData.description.length > 1000
             ? productData.description.slice(0, 1000) + "..."

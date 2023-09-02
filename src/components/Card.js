@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import sanityClient from "../client.js";
 
-import { useUserContext } from "./UserContext";
-
 export default function Card({ category, priceCategory, searchTerm }) {
   const [postData, setPost] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
@@ -42,11 +40,6 @@ export default function Card({ category, priceCategory, searchTerm }) {
         const searchTermLower = searchTerm.toLowerCase();
         filteredData = postData.filter((post) => {
           const titleMatch = post.title.toLowerCase().includes(searchTermLower);
-          // const categoryMatch =
-          //   post.categories &&
-          //   post.categories.some((category) =>
-          //     category.title.toLowerCase().includes(searchTermLower)
-          //   );
           const priceCategoryMatch =
             post.price && post.price.toLowerCase().includes(searchTermLower);
           const subCategoryMatch =
@@ -99,14 +92,14 @@ function CardItem({ post }) {
         <div className="card-content">
           {post.mainImage && (
             <img
-              className="rounded-t-3xl object-cover card-image"
+              className="rounded-t-3xl object-cover card-image border-t-2 border-r-2 border-l-2 border-black"
               src={post.mainImage.asset.url}
               alt={post.mainImage.alt}
               width={360}
               height={240}
             />
           )}
-          <div className="py-4 px-4 border border-black rounded-b-3xl bg-white">
+          <div className="py-4 px-4 rounded-b-3xl bg-white border-b-2 border-r-2 border-l-2 border-black">
             {post.title && (
               <div className="flex justify-between items-center">
                 <h1 className="font-bold font-mont text-[20px]">

@@ -3,7 +3,6 @@ import { auth, db, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
 import { useUserContext } from "../components/UserContext";
 import { Link } from "react-router-dom";
-import { signInWithRedirect } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useAuth } from "../components/AuthContext";
 
@@ -106,8 +105,8 @@ export default function Submit() {
           <h2 className="text-white font-semibold text-[40px] mt-4 font-mont">
             Dashboard
           </h2>
-          <div className="flex flex-col md:flex-row lg:flex-row gap-4 md:gap-8 lg:gap-x-14 mt-10">
-            <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full md:w-[600px] lg:w-[600px] h-[300px] shadow-xl">
+          <div className="flex flex-col md:flex-row lg:flex-row gap-4 md:gap-8 lg:gap-x-14 mt-10 w-full">
+            <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full md:w-full lg:w-full h-[300px] shadow-xl">
               <div>
                 <svg
                   width="68"
@@ -140,7 +139,7 @@ export default function Submit() {
                 </Link>
               </div>
             </div>
-            <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full md:w-[600px] lg:w-[600px] h-[300px] shadow-xl">
+            <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full md:w-full lg:w-full h-[300px] shadow-xl">
               <div>
                 <svg
                   width="62"
@@ -179,7 +178,7 @@ export default function Submit() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col md:flex-row lg:flex-row gap-4 md:gap-8 lg:gap-x-14 mt-6">
+          <div className="flex flex-col md:flex-row lg:flex-row gap-4 md:gap-8 lg:gap-x-14 mt-6 w-full">
             <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full  h-[300px] shadow-xl">
               <div>
                 <svg

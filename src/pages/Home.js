@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { FiSearch } from "react-icons/fi";
 import PriceCategory from "../components/PriceCategory";

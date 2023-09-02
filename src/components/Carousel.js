@@ -65,25 +65,16 @@ function CarouselItem({ post }) {
       <div>
         {post.mainImage && (
           <img
-            className="rounded-t-3xl object-cover card-image"
+            className="rounded-t-3xl object-cover card-image border-t-2 border-r-2 border-l-2 border-black"
             src={post.mainImage.asset.url}
             alt={post.mainImage.alt}
             width={360}
             height={240}
           />
         )}
-        <div className="py-4 px-4 border border-black rounded-b-3xl bg-white">
+        <div className="py-4 px-4 border-b-2 border-r-2 border-l-2 border-black rounded-b-3xl bg-white">
           <div className="flex justify-between items-center">
             <h1 className="font-bold font-mont text-[20px]">{post.title}</h1>
-            {/* {post.categories && post.categories.length > 0 && (
-              <div className="font-mont font-semibold text-white text-[8px] bg-black rounded-md px-3 py-1.5 flex justify-center items-center">
-                {post.categories.map((category, index) => (
-                  <span key={index} className="ml-1">
-                    {category.title}
-                  </span>
-                ))}
-              </div>
-            )} */}
             {post.price && (
               <div className="font-mont font-semibold text-white text-[8px] bg-black rounded-md px-3 py-1.5 flex justify-center items-center">
                 {post.price}
@@ -92,9 +83,6 @@ function CarouselItem({ post }) {
           </div>
           <div className="mt-2">
             <p className="font-mont font-semibold text-[10px] leading-3 max-w-[320px]">
-              {/* {post.body[0].children[0].text.length > 100
-                ? post.body[0].children[0].text.slice(0, 100) + "..."
-                : post.body[0].children[0].text} */}
               {post.body && post.body[0]?.children && (
                 <p className="font-mont font-semibold text-[10px] leading-3 flex flex-wrap max-w-[320px]">
                   {post.body[0].children[0]?.text.slice(0, 100) +

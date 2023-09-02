@@ -1,32 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Card from "../components/Card";
 import { auth, db, provider } from "../firebase";
-import { onAuthStateChanged, signInWithPopup } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { useUserContext } from "../components/UserContext";
-import { Link } from "react-router-dom";
-import { signInWithRedirect } from "firebase/auth";
-import { useParams } from "react-router-dom";
-import {
-  addDoc,
-  collection,
-  getDocs,
-  onSnapshot,
-  query,
-  where,
-} from "firebase/firestore";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import sanityClient from "../client";
 
-import {
-  arrayUnion,
-  doc,
-  getDoc,
-  runTransaction,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { doc } from "firebase/firestore";
 
 import { useAuth } from "../components/AuthContext";
-import { getDatabase, ref, onValue } from "firebase/database";
 
 export default function Bookmark() {
   const useA = useAuth();
@@ -152,89 +133,18 @@ export default function Bookmark() {
   }, []);
 
   const currentUserData = localStorage.getItem("uid");
-  //   console.log(currentUserData);
 
   const docRef = doc(db, "users", "Hx3dIumCLX2YgpqyzxJl");
   const [userBookmarks, setUserBookmarks] = useState([]);
 
-  //   const fetchUserData = async () => {
-  //     try {
-  //       // Fetch user document
-  //       const querySnapshot = await getDocs(collection(db, "users"));
-
-  //       // Create a flag to check if the user was found
-  //       let userFound = false;
-
-  //       querySnapshot.forEach((doc) => {
-  //         const userData = doc.data();
-  //         if (userData.uid == currentUserData) {
-  //           userFound = true;
-  //           console.log(userData.bookmarks);
-  //           setUserBookmarks(userData.bookmarks);
-  //         }
-  //       });
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //     }
-  //   };
-
-  //   fetchUserData();
-
-  //   const fetchUserData = async () => {
-  //     try {
-  //       // Fetch user document
-  //       const querySnapshot = await getDocs(collection(db, "users"));
-
-  //       // Create a flag to check if the user was found
-  //       let userFound = false;
-  //       let userBookmarks = []; // Initialize an array to hold the bookmarks
-
-  //       querySnapshot.forEach((doc) => {
-  //         const userData = doc.data();
-  //         if (userData.uid === currentUserData) {
-  //           userFound = true;
-  //           //   console.log(userData.bookmarks);
-  //           userBookmarks = userData.bookmarks; // Set userBookmarks
-  //         }
-  //       });
-
-  //       // Check if the user was found
-  //       if (!userFound) {
-  //         console.log("User not found.");
-  //       }
-
-  //       return userBookmarks; // Return the user's bookmarks array
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //       return []; // Return an empty array in case of an error
-  //     }
-  //   };
-
-  //   fetchUserData()
-  //     .then((bookmarks) => {
-  //       //   console.log("User's bookmarks:", bookmarks);
-  //       // Now you can use the 'bookmarks' array in your component
-  //       setUserBookmarks(bookmarks);
-  //     })
-  //     .catch((error) => {
-  //       // Handle any errors here
-  //       console.error("Error fetching bookmarks:", error);
-  //     });
-
-  //   console.log(userBookmarks);
-
-  // ...
-
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        // Fetch user document
         const querySnapshot = await getDocs(collection(db, "users"));
         console.log("fetch bookmark called");
 
-        // Create a flag to check if the user was found
         let userFound = false;
-        let userBookmarks = []; // Initialize an array to hold the bookmarks
+        let userBookmarks = [];
 
         querySnapshot.forEach((doc) => {
           const userData = doc.data();
@@ -274,35 +184,20 @@ export default function Bookmark() {
 
           <a className="cursor-pointer">
             <div className="w-full flex justify-evenly mb-8 mt-[20px] flex-wrap gap-x-4 gap-y-8 lg:px-12">
-              {/* {console.log(localStorage.getItem("bookmarks"))} */}
-
-              {/* {postData &&
-                postData.map((post, index) => (
-                  <BookmarkItem key={index} post={post} />
-                ))} */}
-
-              {/* {postData &&
-                postData.map((post, index) => {
-                  // Check if the post's slug is in the userBookmarks array
-                  if (userBookmarks.includes(post.slug.current)) {
-                    return <BookmarkItem key={index} post={post} />;
-                  } else {
-                    return null; // Don't display the card if it doesn't match
-                  }
-                })} */}
-
               {userBookmarks.length === 0 ? (
                 <p className="font-mont font-bold text-[28px] leading-[34.13px] text-center text-white mt-10">
-                  No bookmarks here.
+                  No bookmarks here.<br></br>
+                  <span className="font-mont font-bold text-[14px] leading-[34.13px] text-center text-white mt-4">
+                    (Please refresh if your bookmarks aren't appearing.)
+                  </span>
                 </p>
               ) : (
                 postData &&
                 postData.map((post, index) => {
-                  // Check if the post's slug is in the userBookmarks array
                   if (userBookmarks.includes(post.slug.current)) {
                     return <BookmarkItem key={index} post={post} />;
                   } else {
-                    return null; // Don't display the card if it doesn't match
+                    return null;
                   }
                 })
               )}
@@ -411,14 +306,14 @@ function BookmarkItem({ post }) {
       <div className="card">
         {post.mainImage && (
           <img
-            className="rounded-t-3xl object-cover card-image"
+            className="rounded-t-3xl object-cover card-image border-t-2 border-r-2 border-l-2 border-black"
             src={post.mainImage.asset.url}
             alt={post.mainImage.alt}
             width={360}
             height={240}
           />
         )}
-        <div className="py-4 px-4 border border-black rounded-b-3xl bg-white">
+        <div className="py-4 px-4 border-b-2 border-r-2 border-l-2 border-black rounded-b-3xl bg-white">
           <div className="flex justify-between items-center">
             <h1 className="font-bold font-mont text-[20px]">{post.title}</h1>
             {post.price && (
