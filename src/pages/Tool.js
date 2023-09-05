@@ -152,7 +152,7 @@ export default function Tool() {
             <form onSubmit={handleSubmit} id="myForm" className="">
               <div className="bg-[#7364F4] py-7 lg:px-[5%] md:px-[5%] px-[3%] flex flex-col space-y-5 rounded-xl font-mont">
                 {/* ... (rest of the input fields) */}
-                <div>
+                <div className="mt-3">
                   <label
                     for="tool-name"
                     className="text-white lg:text-[20px]  md:text-[20px] text-[16px] font-semibold"
@@ -397,9 +397,9 @@ export default function Tool() {
                   />
                 </div>
 
-                <div>
+                <div className="pb-6">
                   <label
-                    className="text-white lg:text-[20px] md:text-[20px] text-[16px] font-semibold"
+                    className="text-white lg:text-[20px] md:text-[20px] text-[16px] font-semibold cursor-pointer"
                     for="imageUpload"
                   >
                     Upload Screenshots

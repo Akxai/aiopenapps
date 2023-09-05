@@ -40,23 +40,23 @@ const Blog = () => {
   };
 
   return (
-    <Link to="/" className="cursor-pointer">
-      <div className="blog">
-        <div className="aiupdate">
-          <h2 className="head">AI Updates :</h2>
-          <h3 className="lorem">
-            Lorem ipsum dolor sit amet consectetur. Morbi gravida sed metus
-            massa cras. (Scrolling Content)
-          </h3>
-        </div>
-        <div className="heading">
-          <h1 className="header">Explore Latest AI News & Updates</h1>
-          <h3 className="para">
-            Hunting through the vast Internet, to unearth the best feeds.
-          </h3>
-        </div>
-        <div className="cardpage">
-          {blogs.map((blog) => (
+    <div className="blog">
+      <div className="aiupdate">
+        <h2 className="head">AI Updates :</h2>
+        <h3 className="lorem">
+          Lorem ipsum dolor sit amet consectetur. Morbi gravida sed metus massa
+          cras. (Scrolling Content)
+        </h3>
+      </div>
+      <div className="heading">
+        <h1 className="header">Explore Latest AI News & Updates</h1>
+        <h3 className="para">
+          Hunting through the vast Internet, to unearth the best feeds.
+        </h3>
+      </div>
+      <div className="cardpage">
+        {blogs.map((blog) => (
+          <Link to="/" className="cursor-pointer">
             <div key={blog.slug.current}>
               <div className="cards">
                 <div className="img">
@@ -90,10 +90,10 @@ const Blog = () => {
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          </Link>
+        ))}
       </div>
-    </Link>
+    </div>
   );
 };
 
