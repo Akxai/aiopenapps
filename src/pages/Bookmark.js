@@ -182,7 +182,7 @@ export default function Bookmark() {
             Bookmarks
           </h1>
 
-          <a className="cursor-pointer">
+          <a>
             <div className="w-full flex justify-evenly mb-8 mt-[20px] flex-wrap gap-x-4 gap-y-8 lg:px-12">
               {userBookmarks.length === 0 ? (
                 <p className="font-mont font-bold text-[28px] leading-[34.13px] text-center text-white mt-10">
@@ -333,7 +333,24 @@ function BookmarkItem({ post }) {
             </p>
           </div>
 
-          <div className="mt-3 flex justify-start gap-x-2 items-center">
+          <div className="flex flex-wrap justify-between items-end">
+            <div className="mt-6 flex justify-between gap-x-2 items-center flex-wrap gap-y-2">
+              {post.subCategories &&
+                post.subCategories.map((subcategory, index) => (
+                  <p
+                    key={index}
+                    className="bg-[#909090] text-white font-medium font-mont text-[8px] px-3 py-1.5 rounded-md"
+                  >
+                    {subcategory}
+                  </p>
+                ))}
+            </div>
+            <button className="font-mont text-white bg-black text-[8px] font-semibold px-3 py-1.5 rounded-md mt-2">
+              Visit Page
+            </button>
+          </div>
+
+          {/* <div className="mt-3 flex justify-start gap-x-2 items-center">
             {post.subCategories &&
               post.subCategories.map((subcategory, index) => (
                 <p
@@ -349,7 +366,7 @@ function BookmarkItem({ post }) {
             <button className="font-mont text-white bg-black text-[8px] font-semibold px-3 py-1.5 rounded-md">
               Visit Page
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </a>

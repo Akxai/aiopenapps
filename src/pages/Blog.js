@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../Blog.css";
-import pic from "../pic.png";
 import { Link } from "react-router-dom";
 import sanityClient from "../client.js";
 
@@ -56,7 +55,11 @@ const Blog = () => {
       </div>
       <div className="cardpage">
         {blogs.map((blog) => (
-          <Link to="/" className="cursor-pointer">
+          <Link
+            to={`/blog/${blog.slug.current}`}
+            className="cursor-pointer"
+            key={blog.slug.current}
+          >
             <div key={blog.slug.current}>
               <div className="cards">
                 <div className="img">

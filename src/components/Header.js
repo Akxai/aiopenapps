@@ -20,6 +20,26 @@ export default function Header() {
   }, [setUser]);
 
   useEffect(() => {
+    // Set a continuous loop using setInterval
+    const intervalId = setInterval(() => {
+      // Your code to run continuously goes here
+      // For example, you can update user data every 5 seconds
+      console.log("Useeffect called");
+      const storedUser = localStorage.getItem("isLoggedIn");
+      if (storedUser) {
+        setUser(true);
+      } else {
+        setUser(null);
+      }
+    }, 2000); // Execute every 5 seconds
+
+    return () => {
+      // Cleanup the interval when the component unmounts
+      clearInterval(intervalId);
+    };
+  }, []);
+
+  useEffect(() => {
     setLogged(user !== null);
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
