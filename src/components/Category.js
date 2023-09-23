@@ -1,13 +1,16 @@
 import React from "react";
+import "../App.css";
 
-export default function Category({ name, handleClick }) {
+export default function Category({ name, handleClick, isActive }) {
   const handleClickCategory = () => {
     handleClick(name);
   };
   return (
     <button
       onClick={handleClickCategory}
-      className="text-black lg:text-white xl:text-white font-semibold font-mont text-[16px] underline underline-offset-4 focus:text-[#00FFF2] hover:text-[#00FFF2]"
+      className={`btn ${
+        isActive ? "active" : ""
+      } xl:text-white lg:text-white md:text-white text-black `}
     >
       {name}
     </button>

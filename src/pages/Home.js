@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTypewriter, Cursor } from "react-simple-typewriter";
 import { FiSearch } from "react-icons/fi";
 import PriceCategory from "../components/PriceCategory";
 import Category from "../components/Category";
 import Card from "../components/Card";
+import TopScroll from "../components/TopScroll";
+import { useInView } from 'react-intersection-observer';
+import '../components/Footer.css'
+import '../App.css'
+
+
+
 
 export default function Home() {
   const [text] = useTypewriter({
@@ -26,6 +33,31 @@ export default function Home() {
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
+
+  const [ scrollTop , setScrollTop ] = useState(false);
+
+  const { ref, inView } = useInView({
+    threshold: 0.01, // Trigger animation when the component is at least 50% visible
+    triggerOnce: false // Trigger animation every time the component comes into view
+  });
+
+  useEffect(() => {
+    if (inView) {
+      setScrollTop(true)
+    } else {
+       setScrollTop(false)
+    }
+  }, [inView,setScrollTop]);
+ 
+  const categories = [
+    "All", "Arts", "Avatars", "Audio Editing", "Code Dev", "Copywriter",
+    "Dev Tools", "Design Tools", "Education", "Finance", "Fun Apps", "Gaming",
+    "Generative AI", "Health", "HR Assist", "Image Editing", "Logo Generator",
+    "Low/No Code", "Marketing", "Music", "Productivity", "Prompt AI", "Research",
+    "Resources", "SEO", "Speech to Text", "Text to Speech", "Text to Video",
+    "Translation", "Video Editing", "Voice Changer"
+  ];
+  
 
   return (
     <div>
@@ -90,60 +122,70 @@ export default function Home() {
         <PriceCategory
           name="All"
           handleClick={() => handlePriceCategoryClick("All")}
+          isActive={selectedPriceCategory === 'All'}
+
         />
         <PriceCategory
           name="Free"
           handleClick={() => handlePriceCategoryClick("Free")}
+          isActive={selectedPriceCategory === 'Free'}
         />
         <PriceCategory
           name="Free Trail"
           handleClick={() => handlePriceCategoryClick("Free Trail")}
+          isActive={selectedPriceCategory === 'Free Trail'}
         />
         <PriceCategory
           name="Freemium"
           handleClick={() => handlePriceCategoryClick("Freemium")}
+          isActive={selectedPriceCategory === 'Freemium'}
         />
         <PriceCategory
           name="Paid"
           handleClick={() => handlePriceCategoryClick("Paid")}
+          isActive={selectedPriceCategory === 'Paid'}
         />
         <PriceCategory
           name="Contact For Pricing"
           handleClick={() => handlePriceCategoryClick("Contact For Pricing")}
+          isActive={selectedPriceCategory === 'Contact For Pricing'}
         />
       </div>
       <div className="flex flex-wrap justify-center px-4 md:px-[15%] gap-2 md:gap-4 mt-8">
-        <Category name="All" handleClick={handleCategoryClick} />
-        <Category name="Arts" handleClick={handleCategoryClick} />
-        <Category name="Avatars" handleClick={handleCategoryClick} />
-        <Category name="Audio Editing" handleClick={handleCategoryClick} />
-        <Category name="Code Dev" handleClick={handleCategoryClick} />
-        <Category name="Copywriter" handleClick={handleCategoryClick} />
-        <Category name="Dev Tools" handleClick={handleCategoryClick} />
-        <Category name="Design Tools" handleClick={handleCategoryClick} />
-        <Category name="Education" handleClick={handleCategoryClick} />
-        <Category name="Finance" handleClick={handleCategoryClick} />
-        <Category name="Fun Apps" handleClick={handleCategoryClick} />
-        <Category name="Gaming" handleClick={handleCategoryClick} />
-        <Category name="Generative AI" handleClick={handleCategoryClick} />
-        <Category name="Health" handleClick={handleCategoryClick} />
-        <Category name="HR Assist" handleClick={handleCategoryClick} />
-        <Category name="Image Editing" handleClick={handleCategoryClick} />
-        <Category name="Logo Generator" handleClick={handleCategoryClick} />
-        <Category name="Low/No Code" handleClick={handleCategoryClick} />
-        <Category name="Marketing" handleClick={handleCategoryClick} />
-        <Category name="Music" handleClick={handleCategoryClick} />
-        <Category name="Productivity" handleClick={handleCategoryClick} />
-        <Category name="Prompt AI" handleClick={handleCategoryClick} />
-        <Category name="Research" handleClick={handleCategoryClick} />
-        <Category name="Resources" handleClick={handleCategoryClick} />
-        <Category name="SEO" handleClick={handleCategoryClick} />
-        <Category name="Speech to Text" handleClick={handleCategoryClick} />
-        <Category name="Text to Speech" handleClick={handleCategoryClick} />
-        <Category name="Text to Video" handleClick={handleCategoryClick} />
-        <Category name="Translation" handleClick={handleCategoryClick} />
-        <Category name="Video Editing" handleClick={handleCategoryClick} />
-        <Category name="Voice Changer" handleClick={handleCategoryClick} />
+        <Category name="All"
+         handleClick={handleCategoryClick} 
+        isActive={selectedCategory === 'All'} 
+        />
+        <Category name="Arts" handleClick={handleCategoryClick} isActive={selectedCategory === 'Arts'}/>
+        <Category name="Avatars" handleClick={handleCategoryClick} isActive={selectedCategory === 'Avatars'}/>
+        <Category name="Audio Editing" handleClick={handleCategoryClick} isActive={selectedCategory === 'Audio Editing'}/>
+        <Category name="Code Dev" handleClick={handleCategoryClick} isActive={selectedCategory === 'Code Dev'}/>
+        <Category name="Copywriter" handleClick={handleCategoryClick} isActive={selectedCategory === 'Copywriter'}/>
+        <Category name="Dev Tools" handleClick={handleCategoryClick} isActive={selectedCategory === 'Dev Tools'}/>
+        <Category name="Design Tools" handleClick={handleCategoryClick} isActive={selectedCategory === 'Design Tools'}/>
+        <Category name="Education" handleClick={handleCategoryClick} isActive={selectedCategory === 'Education'}/>
+        <Category name="Finance" handleClick={handleCategoryClick} isActive={selectedCategory === 'Finance'}/>
+        <Category name="Fun Apps" handleClick={handleCategoryClick} isActive={selectedCategory === 'Fun Apps'}/>
+        <Category name="Gaming" handleClick={handleCategoryClick} isActive={selectedCategory === 'Gaming'}/>
+        <Category name="Generative AI" handleClick={handleCategoryClick} isActive={selectedCategory === 'Generative AI'}/>
+        <Category name="Health" handleClick={handleCategoryClick} isActive={selectedCategory === 'Health'}/>
+        <Category name="HR Assist" handleClick={handleCategoryClick} isActive={selectedCategory === 'HR Assist'}/>
+        <Category name="Image Editing" handleClick={handleCategoryClick} isActive={selectedCategory === 'Image Editing'}/>
+        <Category name="Logo Generator" handleClick={handleCategoryClick} isActive={selectedCategory === 'Logo Generator'}/>
+        <Category name="Low/No Code" handleClick={handleCategoryClick} isActive={selectedCategory === 'Low/No Code'}/>
+        <Category name="Marketing" handleClick={handleCategoryClick} isActive={selectedCategory === 'Marketing'}/>
+        <Category name="Music" handleClick={handleCategoryClick} isActive={selectedCategory === 'Music'}/>
+        <Category name="Productivity" handleClick={handleCategoryClick} isActive={selectedCategory === 'Productivity'}/>
+        <Category name="Prompt AI" handleClick={handleCategoryClick} isActive={selectedCategory === 'Prompt AI'}/>
+        <Category name="Research" handleClick={handleCategoryClick} isActive={selectedCategory === 'Research'}/>
+        <Category name="Resources" handleClick={handleCategoryClick} isActive={selectedCategory === 'Resources'}/>
+        <Category name="SEO" handleClick={handleCategoryClick} isActive={selectedCategory === 'SEO'}/>
+        <Category name="Speech to Text" handleClick={handleCategoryClick} isActive={selectedCategory === 'Speech to Text'}/>
+        <Category name="Text to Speech" handleClick={handleCategoryClick} isActive={selectedCategory === 'Text to Speech'}/>
+        <Category name="Text to Video" handleClick={handleCategoryClick} isActive={selectedCategory === 'Text to Video'}/>
+        <Category name="Translation" handleClick={handleCategoryClick} isActive={selectedCategory === 'Translation'}/>
+        <Category name="Video Editing" handleClick={handleCategoryClick} isActive={selectedCategory === 'Video Editing'}/>
+        <Category name="Voice Changer" handleClick={handleCategoryClick} isActive={selectedCategory === 'Voice Changer'}/>
         {/* Add rest of the categories here */}
       </div>
       {/* Cards */}
@@ -154,6 +196,14 @@ export default function Home() {
           searchTerm={searchTerm}
         />
       </div>
+      <div ref={ref}>
+        
+      </div>
+      <div className={`high ${ scrollTop ? "acthigh" : "dchigh"}`}>
+         <TopScroll/>
+      </div>
+       
+       
     </div>
   );
 }

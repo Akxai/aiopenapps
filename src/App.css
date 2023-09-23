@@ -36,3 +36,66 @@
     transform: rotate(360deg);
   }
 }
+
+.btn.active {
+  color: rgb(0, 255, 242);
+}
+
+.btn {
+  transition: all 300ms ease;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  color: white;
+}
+
+.btn:hover {
+  color: rgb(0, 255, 242);
+}
+
+.btnbig {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+  transition: all 300ms ease;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .btnbig,
+  .btn {
+    color: black; /* Set the color to black for medium screens or smaller */
+  }
+}
+
+.btnbig.active {
+  color: rgb(0, 255, 242);
+}
+.btnbig:hover {
+  color: rgb(0, 255, 242);
+}
+
+.uparrow {
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .uparrow {
+    font-size: 2rem;
+    cursor: pointer;
+  }
+}
+
+/* @media (hover: none) {
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+  }
+
+  a:focus,
+  button:focus {
+    outline: none;
+  }
+} */

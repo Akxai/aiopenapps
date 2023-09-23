@@ -303,7 +303,7 @@ export default function Bookmark() {
 function BookmarkItem({ post }) {
   return (
     <a href={"/product/" + post.slug.current} key={post.slug.current}>
-      <div className="card">
+      <div className="">
         {post.mainImage && (
           <img
             className="rounded-t-3xl object-cover card-image border-t-2 border-r-2 border-l-2 border-black"

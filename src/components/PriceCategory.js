@@ -1,13 +1,14 @@
 import React from "react";
+import '../App.css'
 
-export default function PriceCategory({ name, handleClick }) {
+export default function PriceCategory({ name, handleClick ,isActive}) {
   const handleClickCategory = () => {
     handleClick(name);
   };
   return (
     <button
       onClick={handleClickCategory}
-      className="focus:text-[#00FFF2] hover:text-[#00FFF2] font-mont text-black lg:text-white xl:text-white text-[16px] font-semibold"
+      className={`btnbig ${ isActive ? "active" : ""}`}
     >
       {name}
     </button>

@@ -98,7 +98,7 @@ export default function Submit() {
   return (
     <div className="mb-8">
       {isLoggedIn ? (
-        <div className="mt-32 px-4 md:px-12 lg:px-24 xl:px-36 card">
+        <div className="mt-32 max-w-[1400px] mx-auto">
           <h1 className="text-[24px] font-mont text-white font-semibold">
             Hi! <span className="text-[#00FFF2]">{res}</span>,
           </h1>
@@ -183,8 +183,8 @@ export default function Submit() {
             </Link>
           </div>
           <div className="flex flex-col md:flex-row lg:flex-row gap-4 md:gap-8 lg:gap-x-14 lg:mt-12 md:mt-10 mt-6 w-full">
-            <Link to={"/submit/bookmark"}>
-              <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full  h-[300px] shadow-xl">
+            <Link to={"/submit/bookmark"} className="w-full">
+              <div className="flex bg-white px-7 py-12 items-center space-x-4 md:space-x-8 rounded-xl w-full h-[300px] shadow-xl">
                 <div>
                   <svg
                     width="57"

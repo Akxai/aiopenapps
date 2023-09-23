@@ -63,7 +63,7 @@ const BlogPage = () => {
         <img
           src={blogData.mainImage.asset.url}
           alt={blogData.mainImage.alt}
-          className="mt-4 max-w-full xl:w-[60%] lg:w-[60%] w-full h-auto rounded-lg mx-auto mb-8"
+          className="mt-4 max-w-full h-auto max-h-[458px] xl:w-[60%] lg:w-[60%] w-full object-cover rounded-lg mx-auto mb-8"
         />
       )}
       {blogData.description && (

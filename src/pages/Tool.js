@@ -144,7 +144,7 @@ export default function Tool() {
   return (
     <div>
       {user ? (
-        <div className="mt-32 lg:px-[10%] md:px-[10%] px-[5%] card">
+        <div className="mt-32 max-w-[1400px] mx-auto">
           <h1 className="text-[30px] mt-32 md:text-[44px] lg:text-[44px] sm:text-[30px] text-white font-semibold text-center font-mont leading-snug">
             Submit New AI Tool
           </h1>

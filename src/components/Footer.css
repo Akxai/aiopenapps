@@ -1,0 +1,221 @@
+.footer {
+  background: #2b2b2b;
+  display: flex;
+  width: 100%;
+  padding: 2rem 3rem;
+  color: white;
+  gap: 3rem;
+}
+
+.top {
+  align-items: start;
+}
+
+.copy {
+  margin-top: 0.5rem;
+  margin-left: 0.3rem;
+  font-size: 1.2rem;
+}
+.ailogo {
+  width: 14rem;
+}
+.mainers {
+  display: flex;
+  margin-left: auto;
+  gap: 2rem;
+}
+
+.mainy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.bld {
+  font-size: 1.1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+a {
+  /* cursor: pointer; */
+  font-size: 1.1rem;
+}
+.icn {
+  display: flex;
+}
+.icn {
+  margin-top: 1.5rem;
+  gap: 0.9rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.aif {
+  font-size: 2.2rem;
+}
+
+.aif {
+  color: rgb(253, 0, 105);
+}
+
+.aiff {
+  color: rgb(0, 157, 255);
+  font-size: 2.2rem;
+}
+.aifff {
+  color: rgb(208, 0, 255);
+  font-size: 2.2rem;
+}
+.sub {
+  color: white;
+  width: 8.5rem;
+  height: 2.5rem;
+  background-color: blueviolet;
+  border-radius: 0.75rem;
+}
+.high {
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+  transition: bottom 0.5s ease-in-out;
+}
+
+.acthigh {
+  bottom: 15rem;
+  transition: all 500ms ease;
+}
+
+.boton {
+  color: white;
+}
+
+@media screen and (max-width: 900px) {
+  .high {
+    bottom: 1rem;
+  }
+
+  .acthigh {
+    bottom: 24rem;
+    transition: all 500ms ease;
+  }
+  .footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .top {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ailogo {
+    width: 10rem;
+  }
+  .copy {
+    color: white;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .mainers {
+    color: white;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-left: 0;
+  }
+  .mainy {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .bld {
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1rem;
+  }
+  .copy {
+    font-size: 1.1rem;
+  }
+
+  .bn {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .boton {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0.85rem;
+  }
+
+  .sub {
+    color: white;
+    width: 8rem;
+    height: 3rem;
+    background-color: blueviolet;
+    border-radius: 0.75rem;
+  }
+
+  .icn {
+    justify-self: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 2rem;
+    margin-bottom: 0;
+  }
+
+  .aif {
+    font-size: 2.5rem;
+  }
+
+  .aif {
+    color: rgb(253, 0, 105);
+  }
+
+  .aiff {
+    color: rgb(0, 157, 255);
+  }
+  .aifff {
+    color: rgb(208, 0, 255);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .footer {
+    padding: 2rem 0.5rem;
+  }
+  .acthigh {
+    bottom: 22rem;
+    transition: all 500ms ease;
+  }
+  .copy {
+    font-size: 0.8rem;
+  }
+  a {
+    font-size: 0.9rem;
+  }
+  .high {
+    position: fixed;
+    bottom: none;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    justify-content: center;
+    z-index: 99;
+  }
+}
+
+.uparrow {
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+}

@@ -106,10 +106,23 @@ footer {
 }
 
 /* Apply the animation to the cards when the page loads */
-.card {
+.car {
   animation: slideInFromBottom 1s ease-out;
 }
 
 .bookmark-card {
   transition: transform 0.3s ease-in-out;
+}
+
+@media (hover: none) {
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+  }
+
+  a:focus,
+  button:focus {
+    outline: none;
+  }
 }

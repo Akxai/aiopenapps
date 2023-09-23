@@ -88,7 +88,7 @@ export default function Card({ category, priceCategory, searchTerm }) {
 function CardItem({ post }) {
   return (
     <a href={"/product/" + post.slug.current} key={post.slug.current}>
-      <div className="w-full card card-container cursor-pointer">
+      <div className="w-full car card-container">
         <div className="card-content">
           {post.mainImage && (
             <img

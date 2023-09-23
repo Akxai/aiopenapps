@@ -1,84 +1,69 @@
 import React from "react";
 import { SocialIcon } from "react-social-icons";
 import { Link } from "react-router-dom";
+import logo from "../ailogo.png";
+import { AiFillInstagram } from "react-icons/ai";
+import { AiOutlineTwitter } from "react-icons/ai";
+import { GrMail } from "react-icons/gr";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#2B2B2B] px-12 py-8 flex flex-col lg:flex-row justify-between text-white font-mont">
-      <div className="flex flex-col justify-start gap-y-4 pb-3 items-center lg:items-start">
-        <Link to="/">
-          <img
-            src="/logo.png"
-            width={212}
-            height={50}
-            alt="logo"
-            className="w-[212px] mx-auto lg:mx-0 cursor-pointer"
-          />
-        </Link>
-        <p className="md:text-[15px] lg:text-[15px] text-[12px] text-center lg:text-left">
-          © ai openapps, 2023. | We make people smart
-        </p>
-      </div>
-      <div className="flex gap-x-[1rem] md:gap-x-16 lg:gap-x-16 mt-4 lg:mt-0 flex-wrap my-4">
-        <div className="flex flex-col gap-y-3 mb-5 lg:mr-2 md:mr-2 mr-5">
-          <p className="font-bold text-[15px]">Menu</p>
-          <ul className="flex flex-col gap-y-2">
-            <a href="/">
-              <li className="text-[13px]">Home</li>
-            </a>
-            {/* <a href="#">
-              <li className="text-[13px]">Top 100</li>
-            </a>
-            <a href="#">
-              <li className="text-[13px]">Trending AI</li>
-            </a> */}
-          </ul>
+    <footer className="font-mont">
+      <div className="footer">
+        <div className="top">
+          <a href="/">
+            <img src={logo} className="ailogo"></img>
+          </a>
+
+          <p className="copy">© ai openapps, 2023. | We make people smart</p>
         </div>
-        <div className="flex flex-col gap-y-3 mb-5 lg:mr-1 md:mr-1 mr-3">
-          <p className="font-bold text-[15px]">Community</p>
-          <ul className="flex flex-col gap-y-2">
+        <div className="mainers">
+          <div className="mainy">
+            <p className="bld">Menu</p>
+            <a href="/">Home</a>
+          </div>
+          <div className="mainy">
+            <p className="bld">Community</p>
+            <a href="/submit/tool">Submit</a>
+            <a href="/blog">Blog</a>
+          </div>
+          <div className="mainy">
+            <p className="bld">Company</p>
+            <a href="/about">About us</a>
+            <a href="/contact">Contact us</a>
+          </div>
+        </div>
+        <div className="bn">
+          <div className="boton">
             <a href="/submit/tool">
-              <li className="text-[13px]">Submit</li>
+              <button type="" className="sub">
+                Submit
+              </button>
             </a>
-            <a href="/blog">
-              <li className="text-[13px]">Blogs</li>
-            </a>
-          </ul>
-        </div>
-        <div className="flex flex-col gap-y-3 mb-5">
-          <p className="font-bold text-[15px]">Company</p>
-          <ul className="flex flex-col gap-y-2">
-            <a href="/about">
-              <li className="text-[13px]">About us</li>
-            </a>
-            <a href="/contact">
-              <li className="text-[13px]">Contact us</li>
-            </a>
-          </ul>
-        </div>
-        <div className="mx-auto mt-4 md:mt-0 lg:mt-0">
-          <Link
-            to="/submit/tool"
-            className="bg-[#9747FF] flex justify-center items-center py-1.5 font-mont font-medium rounded-md w-full"
-          >
-            Submit
-          </Link>
-          <div className="flex justify-evenly gap-x-2 mt-4 items-center">
-            <SocialIcon
-              url="https://www.instagram.com/aiopenapps/"
+          </div>
+
+          <div className="icn">
+            <a
+              href="https://www.instagram.com/aiopenapps/"
               target="_blank"
-              style={{ width: 40, height: 40 }}
-            />
-            <SocialIcon
-              url="https://twitter.com/aiopenapps"
+              rel="noopener noreferrer"
+            >
+              <AiFillInstagram className="aif" />
+            </a>
+            <a
+              href="https://twitter.com/aiopenapps"
               target="_blank"
-              style={{ width: 40, height: 40 }}
-            />
-            <SocialIcon
-              url="mailto:support@aiopenapps.com"
+              rel="noopener noreferrer"
+            >
+              <AiOutlineTwitter className="aiff" />
+            </a>
+            <a
+              href="mailto:support@aiopenapps.com"
               target="_blank"
-              style={{ width: 40, height: 40 }}
-            />
+              rel="noopener noreferrer"
+            >
+              <GrMail className="aifff" />
+            </a>
           </div>
         </div>
       </div>
