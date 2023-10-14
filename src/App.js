@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
 import BlogPage from "./pages/BlogPage";
 import Bookmark from "./pages/Bookmark";
+import Book from "./pages/Book";
 
 import "./loader.css";
 
@@ -43,6 +44,8 @@ function App() {
             </div>
           ) : (
             <>
+            <div className = 'bggo'></div>
+
               <Header />
               <Routes>
                 <Route path="/" element={<Home />} exact />
@@ -51,7 +54,7 @@ function App() {
                 <Route path="/user" element={<User />} />
                 <Route path="/submit/tool" element={<Tool />} />
                 <Route path="/submit/sponsor" element={<Sponsor />} />
-                <Route path="/submit/bookmark" element={<Bookmark />} />
+                <Route path="/submit/bookmark" element={<Book />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPage />} />

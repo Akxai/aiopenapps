@@ -3,9 +3,10 @@ import { useLocation, Link } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import { useParams } from "react-router-dom";
 import sanityClient from "../client.js";
-import { BiLinkExternal } from "react-icons/bi";
+import { BiLinkExternal, BiSolidUpArrow, BiUpArrow } from "react-icons/bi";
 import { BsBookmark, BsFillBookmarkFill } from "react-icons/bs";
 import { useMemo } from "react";
+import "../App.css";
 
 import { collection, getDocs, setDoc } from "firebase/firestore";
 import { db } from "../firebase.js";
@@ -21,7 +22,11 @@ export default function Product() {
 
   const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
 
+  const [ig, forceU] = useReducer((y) => y + 1, 0);
+
   const [userBookmarks, setUserBookmarks] = useState([]);
+  const [userUpvote, setUserUpvote] = useState([]);
+  const [allUpvotes, setAllUpvotes] = useState([]);
 
   const useA = useAuth();
   // console.log("User Data:", useA);
@@ -45,6 +50,7 @@ export default function Product() {
   }, []);
 
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isUpvoted, setIsUpvoted] = useState(false);
 
   useEffect(() => {
     sanityClient
@@ -139,9 +145,73 @@ export default function Product() {
       });
   }, [ignored]);
 
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        // Fetch user document
+        const querySnapshot = await getDocs(collection(db, "users"));
+        console.log("fetch upvote called");
+
+        // Create a flag to check if the user was found
+        let userFound = false;
+        let userUpvotes = []; // Initialize an array to hold the bookmarks
+
+        querySnapshot.forEach((doc) => {
+          const userData = doc.data();
+          if (userData.uid === currentUserData) {
+            userFound = true;
+            userUpvotes = userData.upvote;
+          }
+        });
+
+        if (!userFound) {
+          console.log("User not found.");
+        }
+        setUserUpvote(userUpvotes);
+        return userUpvotes;
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        return [];
+      }
+    };
+
+    fetchUserData()
+      .then((upvotes) => {
+        setUserUpvote(upvotes);
+      })
+      .catch((error) => {
+        console.error("Error fetching upvotes:", error);
+      });
+  }, [ig]);
+
+  // Inside your Product component
+
   if (!productData) {
     return <div>Loading...</div>;
   }
+
+  const getAllUserUpvotes = async () => {
+    try {
+      const usersCollection = collection(db, "users");
+      const querySnapshot = await getDocs(usersCollection);
+
+      const allUpvotes = [];
+
+      querySnapshot.forEach((doc) => {
+        const userData = doc.data();
+        if (userData.upvote) {
+          allUpvotes.push(...userData.upvote);
+        }
+      });
+      console.log("ALL upvotes: ", allUpvotes);
+      setAllUpvotes(allUpvotes);
+
+      return allUpvotes;
+    } catch (error) {
+      console.error("Error fetching user upvotes:", error);
+      return [];
+    }
+  };
 
   const addBookmark = async (bookmarkId) => {
     console.log(bookmarkId);
@@ -205,9 +275,79 @@ export default function Product() {
     forceUpdate();
   };
 
+  const addUpvote = async (upvoteId) => {
+    console.log(upvoteId);
+
+    if (!useA.uid || !productData || !productData.slug) {
+      console.error("User UID, productData, or productData.slug is undefined.");
+      alert("Please log in!");
+      return;
+    }
+
+    try {
+      const querySnapshot = await getDocs(collection(db, "users"));
+
+      // Create a flag to check if the user was found
+      let userFound = false;
+
+      querySnapshot.forEach((doc) => {
+        const userData = doc.data();
+
+        if (userData.uid === useA.uid) {
+          userFound = true;
+
+          if (!userData.upvote) {
+            userData.upvote = [];
+          }
+
+          const slugIndex = userData.upvote.indexOf(productData.slug.current);
+
+          if (slugIndex === -1) {
+            // The slug is not in the bookmarks, so add it
+            userData.upvote.push(productData.slug.current);
+            setDoc(doc.ref, userData);
+            localStorage.setItem("upvote", userData.upvote);
+            userData.upvote.map((up, index) => console.log(index, up));
+            console.log("Upvote added successfully");
+            console.log("User upvotes", userData.upvote);
+            setIsUpvoted(true);
+            getAllUserUpvotes();
+          } else {
+            // The slug is already in the bookmarks, so remove it
+            userData.upvote.splice(slugIndex, 1);
+            setDoc(doc.ref, userData);
+            localStorage.setItem("upvote", userData.upvote);
+            console.log("upvote removed successfully");
+            console.log("User upvotes", userData.upvote);
+
+            setIsUpvoted(false);
+            getAllUserUpvotes();
+          }
+        }
+      });
+
+      if (!userFound) {
+        console.error("User document not found.");
+      }
+    } catch (error) {
+      console.error("Error adding/removing bookmark:", error);
+    }
+    forceU();
+  };
+
+  const getUpvotesCount = () => {
+    const currentSlug = productData.slug.current;
+
+    const res = allUpvotes.filter((slug) => slug === currentSlug).length;
+    console.log("RES", res);
+    console.log(currentSlug);
+    getAllUserUpvotes();
+    return res;
+  };
+
   return (
-    <div>
-      <div className="px-6 md:px-[20%] md:mt-[150px] mt-[100px]">
+    <div className="productbg">
+      <div className="px-6 md:px-[20%] ">
         {productData.newCategory && productData.newCategory.video ? (
           <video
             className="w-full h-auto max-h-[458px] mb-8 md:mb-16 rounded-2xl shadow-lg object-cover product-info"
@@ -238,6 +378,11 @@ export default function Product() {
               {productData.title}
             </h1>
           </div>
+          <div>
+            <p className="font-mont text-base md:text-xl font-semibold">
+              Upvotes: {getUpvotesCount()}
+            </p>
+          </div>
           <div className="flex justify-start items-center gap-x-2">
             <div>
               <p className="font-mont text-base md:text-xl font-semibold">
@@ -264,6 +409,19 @@ export default function Product() {
           >
             {productData.price}
           </button>
+
+          {isLoggedIn && (
+            <button
+              className="bg-[#6D5DF3] px-5 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
+              onClick={() => addUpvote(productData.slug.current, useA.uid)}
+            >
+              {userUpvote.includes(productData.slug.current) ? (
+                <BiSolidUpArrow className="w-6 h-6" />
+              ) : (
+                <BiUpArrow className="w-6 h-6" />
+              )}
+            </button>
+          )}
 
           {isLoggedIn && (
             <button

@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import sanityClient from "../client.js";
+import '../App.css'
+import { Link } from "react-router-dom";
+
 
 export default function Card({ category, priceCategory, searchTerm }) {
   const [postData, setPost] = useState(null);
@@ -87,7 +90,7 @@ export default function Card({ category, priceCategory, searchTerm }) {
 
 function CardItem({ post }) {
   return (
-    <a href={"/product/" + post.slug.current} key={post.slug.current}>
+    <Link to={"/product/" + post.slug.current} key={post.slug.current}>
       <div className="w-full car card-container">
         <div className="card-content">
           {post.mainImage && (
@@ -99,15 +102,23 @@ function CardItem({ post }) {
               height={240}
             />
           )}
-          <div className="py-4 px-4 rounded-b-3xl bg-white border-b-2 border-r-2 border-l-2 border-black max-w-[360px]">
+          <div className="crds">
+          <div className="py-4 px-4 rounded-b-3xl  border-b-2 border-r-2 border-l-2 border-black max-w-[360px]">
+             
+              
+             
             {post.title && (
               <div className="flex justify-between items-center">
                 <h1 className="font-bold font-mont text-[20px]">
                   {post.title}
                 </h1>
                 {post.price && (
-                  <div className="font-mont font-semibold text-white text-[8px] bg-black rounded-md px-3 py-1.5 flex justify-center items-center">
+                  <div className = 'pbtn'>
+                    
+                   
+                  <div className="font-mont font-semibold  text-[9px]  rounded-md px-3 py-1.5 flex justify-center items-center">
                     {post.price}
+                  </div>
                   </div>
                 )}
               </div>
@@ -125,15 +136,19 @@ function CardItem({ post }) {
               <div className="mt-6 flex justify-between gap-x-2 items-center flex-wrap gap-y-2">
                 {post.subCategories &&
                   post.subCategories.map((subcategory, index) => (
+                    <div className="pbttn">
+                        
                     <p
                       key={index}
-                      className="bg-[#909090] text-white font-medium font-mont text-[8px] px-3 py-1.5 rounded-md"
+                      className="  font-medium font-mont text-[9px] px-3 py-1.5 rounded-md"
                     >
                       {subcategory}
                     </p>
+                    </div>
                   ))}
               </div>
-              <button className="font-mont text-white bg-black text-[8px] font-semibold px-3 py-1.5 rounded-md mt-2">
+              
+              <button className="font-mont  text-[9px] font-semibold px-3 py-1.5 rounded-md mt-2">
                 Visit Page
               </button>
             </div>
@@ -142,9 +157,10 @@ function CardItem({ post }) {
                 Visit Page
               </button>
             </div> */}
+            </div>
           </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

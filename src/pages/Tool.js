@@ -6,6 +6,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useUserContext } from "../components/UserContext";
 import { auth, provider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
+import "../App.css";
 
 import { useAuth } from "../components/AuthContext";
 
@@ -142,15 +143,15 @@ export default function Tool() {
   };
 
   return (
-    <div>
+    <div className="toolbg">
       {user ? (
-        <div className="mt-32 max-w-[1400px] mx-auto">
+        <div className=" max-w-[1400px] mx-auto md:px-[10%] lg:px-[10%] px-[1%]">
           <h1 className="text-[30px] mt-32 md:text-[44px] lg:text-[44px] sm:text-[30px] text-white font-semibold text-center font-mont leading-snug">
             Submit New AI Tool
           </h1>
           <div className=" my-8 font-mont ">
-            <form onSubmit={handleSubmit} id="myForm" className="">
-              <div className="bg-[#7364F4] py-7 lg:px-[5%] md:px-[5%] px-[3%] flex flex-col space-y-5 rounded-xl font-mont">
+            <form onSubmit={handleSubmit} id="myForm" className="toolformbg">
+              <div className=" py-7 lg:px-[5%] md:px-[5%] px-[3%] flex flex-col space-y-5 rounded-xl font-mont">
                 {/* ... (rest of the input fields) */}
                 <div className="mt-3">
                   <label
@@ -429,7 +430,7 @@ export default function Tool() {
                   </label>
                 </div>
               </div>
-              <div>
+              <div className="toolbtn">
                 <button
                   type="submit"
                   className="flex justify-end text-[24px] font-semibold bg-white mt-8 px-8 py-3 ml-auto rounded-xl shadow-lg"

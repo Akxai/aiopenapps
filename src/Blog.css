@@ -1,8 +1,10 @@
 .blog {
-  height: auto;
+  min-height: 100vh;
   margin-top: 80px;
   width: 100vw;
   display: flex;
+  background: var(--bg-color);
+  transition: all 500ms ease;
   flex-direction: column;
   /* overflow-y: scroll; */
 }
@@ -122,9 +124,10 @@
   height: 14rem;
   flex-shrink: 0;
   border-radius: 1.25rem;
-  background: #4e42b2;
+  background: var(--purple-bg);
   color: white;
   margin-top: 0;
+  transition: all 500ms ease;
 }
 
 .title {

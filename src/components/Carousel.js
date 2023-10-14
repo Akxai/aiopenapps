@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import sanityClient from "../client.js";
+import { Link } from "react-router-dom";
+import '../App.css'
 
 export default function Carousel() {
   const [postData, setPost] = useState(null);
@@ -61,7 +63,7 @@ export default function Carousel() {
 
 function CarouselItem({ post }) {
   return (
-    <a href={"/product/" + post.slug.current} key={post.slug.current}>
+    <Link to={"/product/" + post.slug.current} key={post.slug.current}>
       <div className="cursor-pointer">
         {post.mainImage && (
           <img
@@ -72,12 +74,17 @@ function CarouselItem({ post }) {
             height={240}
           />
         )}
-        <div className="py-4 px-4 border-b-2 border-r-2 border-l-2 border-black rounded-b-3xl bg-white">
+        <div className = 'crdss'>
+          
+         
+        <div className="py-4 px-4 border-b-2 border-r-2 border-l-2 border-black rounded-b-3xl ">
           <div className="flex justify-between items-center">
             <h1 className="font-bold font-mont text-[20px]">{post.title}</h1>
             {post.price && (
-              <div className="font-mont font-semibold text-white text-[8px] bg-black rounded-md px-3 py-1.5 flex justify-center items-center">
+              <div className = 'pbtn pp'>     
+              <div className="font-mont font-semibold  text-[10px]  rounded-md px-3 py-1.5 flex justify-center items-center">
                 {post.price}
+              </div>
               </div>
             )}
           </div>
@@ -96,15 +103,17 @@ function CarouselItem({ post }) {
             <div className="mt-6 flex justify-between gap-x-2 items-center flex-wrap gap-y-2">
               {post.subCategories &&
                 post.subCategories.map((subcategory, index) => (
-                  <p
+                  
+                  <span
                     key={index}
-                    className="bg-[#909090] text-white font-medium font-mont text-[8px] px-3 py-1.5 rounded-md"
+                    className=" font-medium font-mont text-[9px] px-3 py-1.5 rounded-md"
                   >
                     {subcategory}
-                  </p>
+                  </span>
+                  
                 ))}
             </div>
-            <button className="font-mont text-white bg-black text-[8px] font-semibold px-3 py-1.5 rounded-md mt-2">
+            <button className="font-mont  text-[9px] font-semibold px-3 py-1.5 rounded-md mt-2">
               Visit Page
             </button>
           </div>
@@ -126,8 +135,9 @@ function CarouselItem({ post }) {
               Visit Page
             </button>
           </div> */}
+          </div>
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
