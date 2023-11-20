@@ -3,7 +3,8 @@ import { SocialIcon } from "react-social-icons";
 import { Link } from "react-router-dom";
 import logo from "../ailogo.png";
 import { AiFillInstagram } from "react-icons/ai";
-import { AiOutlineTwitter } from "react-icons/ai";
+// import { RiTwitterXLine } from "react-icons/ai";
+import { FaXTwitter } from "react-icons/fa6";
 import { GrMail } from "react-icons/gr";
 
 export default function Footer() {
@@ -55,7 +56,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <AiOutlineTwitter className="aiff" />
+              <FaXTwitter className="aiff" />
             </a>
             <a
               href="mailto:support@aiopenapps.com"

@@ -22,26 +22,6 @@ export default function Header() {
     }
   }, [setUser]);
 
-  // useEffect(() => {
-  //   // Set a continuous loop using setInterval
-  //   const intervalId = setInterval(() => {
-  //     // Your code to run continuously goes here
-  //     // For example, you can update user data every 5 seconds
-  //     console.log("Useeffect called");
-  //     const storedUser = localStorage.getItem("isLoggedIn");
-  //     if (storedUser) {
-  //       setUser(true);
-  //     } else {
-  //       setUser(null);
-  //     }
-  //   }, 2000); // Execute every 5 seconds
-
-  //   return () => {
-  //     // Cleanup the interval when the component unmounts
-  //     clearInterval(intervalId);
-  //   };
-  // }, []);
-
   useEffect(() => {
     setLogged(user !== null);
     localStorage.setItem("user", JSON.stringify(user));
@@ -127,20 +107,20 @@ export default function Header() {
             </Link>
 
             {user ? (
-              <Link className="text-[18px] py-2 font-semibold font-mont leading-6 text-white cursor-pointer hover:text-[#FF9900] group relative">
+              <Link className="text-[18px] flex items-center font-semibold font-mont leading-6 text-white cursor-pointer hover:text-[#FF9900] group relative">
                 Dashboard
-                <div className="dropdown-menu absolute z-10 text-center hidden group-hover:block bottom-[-170px] left-[-10px]">
+                <div className="dropdown-menu absolute z-10 text-center hidden group-hover:block bottom-[-130px] left-[-10px]">
                   <ul className="flex flex-col px-[11px] rounded-lg bg-white">
                     <Link to="/submit">
                       <li className="font-mont cursor-pointer pt-2 text-black hover:bg-gray-100 w-full px-4 py-1 rounded-lg">
                         Profile
                       </li>
                     </Link>
-                    <Link to="/">
+                    {/* <Link to="/">
                       <li className="font-mont cursor-pointer text-black hover:bg-gray-100 w-full px-4 py-1 rounded-lg">
                         Learn
                       </li>
-                    </Link>
+                    </Link> */}
                     <Link to="/blog">
                       <li className="font-mont cursor-pointer text-black hover:bg-gray-100 w-full px-4 py-1 rounded-lg">
                         Blog
@@ -162,7 +142,7 @@ export default function Header() {
             ) : (
               <Link
                 to={"/submit"}
-                className="text-[18px] font-semibold font-mont leading-6 text-white cursor-pointer hover:text-[#FF9900] group relative"
+                className="text-[18px] flex items-center font-semibold font-mont leading-6 text-white cursor-pointer hover:text-[#FF9900]"
               >
                 Login
               </Link>
@@ -222,7 +202,7 @@ export default function Header() {
                   className="flex justify-center"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  <Dark />
+                  {/* <Dark /> */}
                 </div>
 
                 <div

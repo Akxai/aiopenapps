@@ -7,19 +7,103 @@
   pointer-events: none;
 }
 :root {
-  --bg-color: #ffffff00; 
-  --text-color: #000000; 
-  --nav-color:#000000;
-  --color-light:#ffffff;
-  --icon-color: #272727c1; 
-  --example-color : #00000043 ;
-  --shadow-color : #000000 ;
-  --bttxt-color : #ffffff ;
-  --purple-color : #000000;
-  --purple-bg : #4e42b2 ;
-  --spl-bg :  linear-gradient(to bottom,#6d5df3, #7364f4,#7a6bf4, #8071f5,#8678f5,#9385f7,#a093f9,#aca0fa, #c1b7fc,#d6cffe,#ebe7ff,#ffffff
+  --bg-color: #fff8f0;
+  --text-color: #000000;
+  --nav-color: #111d4a;
+  --color-light: #ffffff;
+  --icon-color: #272727c1;
+  --example-color: #00000043;
+  --shadow-color: #000000;
+  --category-color: #1e1e24;
+  --card-color: #1e1e24;
+  --bttxt-color: #ffffff;
+  --purple-color: #92140c;
+  --purple-bg: #4e42b2;
+  --spl-bg: linear-gradient(
+    to bottom,
+    #6d5df3,
+    #7364f4,
+    #7a6bf4,
+    #8071f5,
+    #8678f5,
+    #9385f7,
+    #a093f9,
+    #aca0fa,
+    #c1b7fc,
+    #d6cffe,
+    #ebe7ff,
+    #ffffff
   );
-  --radtxt-clr : #000000 ;
+  --radtxt-clr: #000000;
+}
+
+.slide {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.pagi {
+  color: rgb(250, 250, 250);
+  width: 2rem;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 2rem;
+  background-color: #00000045;
+  border-radius: 0.5rem;
+}
+
+.pagi.active {
+  background-color: #000000;
+  color: red;
+}
+
+.pagination {
+  display: flex;
+  gap: 2rem;
+}
+
+.slidebar {
+  display: flex;
+  width: 80%;
+  overflow-x: scroll;
+  gap: 1rem;
+  border-radius: 0.5rem;
+  transition: all 400ms ease;
+}
+
+.btnu {
+  padding: 10px;
+  white-space: nowrap;
+  color: var(--text-color);
+  background: rgba(0, 0, 0, 0.079);
+  border-radius: 1rem;
+  transition: all 400ms ease;
+  font-weight: 500;
+}
+.btnu:hover {
+  background-color: #92150cb8;
+  color: white;
+}
+.activebt {
+  background-color: #92150cba;
+  color: white;
+}
+
+.lft {
+  color: var(--text-color);
+  font-size: 2.6rem;
+  cursor: pointer;
+}
+
+.rgt {
+  color: var(--text-color);
+  font-size: 2.6rem;
+  cursor: pointer;
 }
 
 .navv {
@@ -32,7 +116,7 @@
 }
 
 .color {
-  background-color: var(--bg-color) ;
+  background-color: var(--bg-color);
   transition: all 500ms ease;
   min-height: 100vh;
 }
@@ -44,12 +128,12 @@
 
 .bsbook {
   font-size: 5rem;
-  color: var(--text-color);
+  color: white;
   transition: all 500ms ease;
 }
 
 .profile h3 {
-  color: var(--radtxt-clr);
+  color: white;
   transition: all 500ms ease;
 }
 
@@ -73,7 +157,6 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-   
 }
 
 .crds {
@@ -81,14 +164,12 @@
   border-bottom-right-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
   transition: all 500ms ease;
-   
 }
 .crdss {
   background-color: var(--color-light);
   border-bottom-right-radius: 1.5rem;
   border-bottom-left-radius: 1.5rem;
   transition: all 500ms ease;
-   
 }
 
 .crdss p {
@@ -103,16 +184,16 @@
 }
 
 .crds h1 {
-  color : var(--text-color);
-  transition : all 500ms ease;
+  color: var(--text-color);
+  transition: all 500ms ease;
 }
 .crdss h1 {
-  color : var(--text-color);
-  transition : all 500ms ease;
+  color: var(--text-color);
+  transition: all 500ms ease;
 }
 .crds p {
-  color : var(--text-color);
-  transition : all 500ms ease;
+  color: var(--text-color);
+  transition: all 500ms ease;
 }
 
 .crds button {
@@ -129,20 +210,19 @@
 }
 
 .pbtn {
-  background-color: var(--shadow-color);
+  background-color: #1e1e24;
   color: var(--bttxt-color);
   font-weight: 900;
   transition: all 500ms ease;
   border-radius: 0.4rem;
 }
-.pbttn p{ 
-  background-color: var(--shadow-color);
+.pbttn p {
+  background-color: #111d4a;
   color: var(--bttxt-color);
   font-weight: 900;
   transition: all 500ms ease;
   border-radius: 0.4rem;
 }
-
 
 .App-link {
   color: #61dafb;
@@ -197,36 +277,54 @@
 }
 
 .btn.active {
-  color: rgb(0,255,242);
+  color: #92140c;
 }
 
 .btn {
   transition: all 300ms ease;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 4px;
+  color: var(--category-color);
+}
+
+.tp {
+  color: var(--category-color);
+}
+
+.search {
+  border: 1px solid var(--text-color);
+  background: rgba(30, 30, 36, 0.5);
   color: white;
 }
 
+.search::placeholder {
+  color: white;
+}
 
+.bst {
+  color: var(--category-color);
+  font-size: 0.9rem;
+  font-family: "Montserrat", sans-serif;
+}
 
 .btn:hover {
-  color: rgb(0,255,242);
+  color: #92140c;
 }
 
 .btnbig {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   transition: all 300ms ease;
-  color: white;
+  color: var(--category-color);
 }
 
 .btnbig.active {
-  color: rgb(0,255,242);
+  color: #92140c;
 }
 .btnbig:hover {
-  color: rgb(0,255,242);
+  color: #92140c;
 }
 
 .uparrow {
@@ -235,6 +333,31 @@
   color: var(--color-light);
   background-color: var(--text-color);
   border-radius: 2rem;
+  transition: all 500ms ease;
+}
+.loginbg {
+  background: var(--card-color);
+}
+
+.aitxt {
+  color: #92140c;
+}
+
+.googlebg {
+  background: #92140c;
+  color: white;
+}
+
+.toolformbg {
+  background-color: var(--card-color);
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 500ms ease;
+}
+
+.txtclr {
+  color: var(--text-color);
   transition: all 500ms ease;
 }
 
@@ -251,38 +374,35 @@
   transition: all 500ms ease;
   /* height: 120vh; */
   padding: 4rem 0;
- /* display: flex; */
+  /* display: flex; */
 }
 .prof {
   margin-top: 4rem;
   /* background-color: #ffffff; */
 }
 .submitprof {
-  background-color: var(--color-light);
+  background-color: var(--card-color);
   padding: 0 2rem;
   display: flex;
   height: 18rem;
   border-radius: 0.5rem;
-  color: var(--text-color);
+  color: white;
   gap: 2rem;
   align-items: center;
   transition: all 500ms ease;
-
 }
+
 .submitproff {
-  background-color: var(--color-light);
+  background-color: var(--card-color);
   padding: 0 2rem;
   display: flex;
   height: 18rem;
   border-radius: 0.5rem;
-  color: var(--text-color);
+  color: white;
   gap: 1rem;
   align-items: center;
   transition: all 500ms ease;
-
 }
-
-
 
 .proftext {
   margin-top: 17rem;
@@ -296,7 +416,7 @@
 }
 
 .sponscard {
-  background-color: var(--color-light);
+  background-color: var(--card-color);
   display: flex;
   gap: 2rem;
   width: 37rem;
@@ -305,8 +425,7 @@
   align-items: center;
   border-radius: 0.6rem;
   transition: all 500ms ease;
-  color: var(--text-color);
- 
+  color: white;
 }
 
 .bookmarkbg {
@@ -314,12 +433,11 @@
    min-height : 100vh ;
   padding: 1rem 0 1rem 0;
   transition: all 500ms ease; */
-  
 }
 
 .bookback {
-  background-color: var(--color-light);
-  color: var(--text-color);
+  background-color: var(--card-color);
+  color: white;
   padding: 1rem;
   background-color: var(--color-light);
   border-bottom-left-radius: 1.5rem;
@@ -328,11 +446,9 @@
   border-right: solid 1px black;
   border-bottom: solid 1px black;
   transition: all 500ms ease;
-  
 }
 
 .btnn {
-   
 }
 
 .btnn button {
@@ -342,22 +458,14 @@
   padding: 0.4rem 0.8rem;
   /* height: 1.5rem; */
   align-items: center;
-  transition: all 500ms ease; 
+  transition: all 500ms ease;
 }
 
 .toolbg {
   background-color: var(--bg-color);
   padding: 1.5rem 0;
   min-height: 100vh;
-  transition: all 500ms ease; 
-}
-
-.toolformbg {
-  background-color: var(--purple-bg);
-  border-radius: 2rem;
-  display: flex;
-  flex-direction: column;
-  transition: all 500ms ease; 
+  transition: all 500ms ease;
 }
 
 .toolbtn {
@@ -370,12 +478,11 @@
   background-color: var(--bg-color);
   min-height: 100vh;
   padding: 9rem 0 3rem 0;
-  transition: all 500ms ease; 
+  transition: all 500ms ease;
   color: var(--text-color);
 }
 
 .pp {
-
   color: var(--bttxt-color);
 }
 .pbtnn {
@@ -385,15 +492,15 @@
 }
 
 .book {
-  background-color : var(--bg-color);
+  background-color: var(--bg-color);
   min-height: 100vh;
   transition: all 500ms ease;
   padding: 2rem 0;
 }
 
-@media screen and (max-width : 600px) {
+@media screen and (max-width: 600px) {
   .uparrow {
-    font-size: 2.5rem; 
+    font-size: 2.5rem;
     cursor: pointer;
   }
   .btn {
@@ -404,18 +511,17 @@
   }
 
   .toolbg {
-    padding : 0 0.85rem
+    padding: 0 0.85rem;
   }
   .profile {
     padding: 2rem 0.85rem;
   }
   .submitprof {
-    padding : 0.2rem 0.2rem ;
+    padding: 0.2rem 0.2rem;
   }
   .toolbtn {
     margin-right: 1rem;
     margin-top: -3rem;
     margin-bottom: 1rem;
   }
-  
 }

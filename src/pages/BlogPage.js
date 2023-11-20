@@ -69,7 +69,9 @@ const BlogPage = () => {
       {blogData.description && (
         <p className="text-gray-600 lg:px-20">{blogData.description}</p>
       )}
-      {blogData.source && <p className="mt-4 lg:px-20">{blogData.source}</p>}
+      {blogData.source && (
+        <p className="mt-4 lg:px-20 txtclr">{blogData.source}</p>
+      )}
       {blogData.publishedAt && (
         <p className="mt-4 text-gray-400 lg:px-20">
           {formatDate(blogData.publishedAt)}

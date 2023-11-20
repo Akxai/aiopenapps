@@ -38,30 +38,30 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <div style={{ minHeight: "calc(100vh - 120px)" }}>
-          {isLoading ? (
+          {/* {isLoading ? (
             <div className="preloader">
               <img src="/preloader.svg" alt="Loading..." />
             </div>
-          ) : (
-            <>
-            <div className = 'bggo'></div>
+          ) : ( */}
+          <>
+            <div className="bggo"></div>
 
-              <Header />
-              <Routes>
-                <Route path="/" element={<Home />} exact />
-                <Route path="/product/:slug" element={<Product />} />
-                <Route path="/submit" element={<Submit />} />
-                <Route path="/user" element={<User />} />
-                <Route path="/submit/tool" element={<Tool />} />
-                <Route path="/submit/sponsor" element={<Sponsor />} />
-                <Route path="/submit/bookmark" element={<Book />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPage />} />
-              </Routes>
-              {/* {contentLoaded && <Footer />} */}
-            </>
-          )}
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} exact />
+              <Route path="/product/:slug" element={<Product />} />
+              <Route path="/submit" element={<Submit />} />
+              <Route path="/user" element={<User />} />
+              <Route path="/submit/tool" element={<Tool />} />
+              <Route path="/submit/sponsor" element={<Sponsor />} />
+              <Route path="/submit/bookmark" element={<Book />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPage />} />
+            </Routes>
+            {/* {contentLoaded && <Footer />} */}
+          </>
+          {/* )} */}
         </div>
         {contentLoaded && <Footer />}
       </BrowserRouter>

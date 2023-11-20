@@ -13,16 +13,16 @@
   display: flex;
   padding: 0.5rem;
   width: 100%;
-  height: 4rem; 
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
+  height: 4rem;
+  /* background-color: white; */
+  /* color: white; */
   align-items: center;
   justify-content: center;
   overflow-y: hidden;
 }
 
 .head {
-  color: rgba(0, 255, 242, 1);
+  color: #92140c;
   font-size: 1.3rem;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -38,13 +38,13 @@
 .heading {
   text-align: center;
   margin-top: 2rem;
-  color: white;
+  color: var(--text-color);
 }
 
 .scrolling-titles {
-  margin-top: 27rem;
-  animation: scroll 10s linear infinite; 
-
+  margin-top: 15rem;
+  animation: scroll 5s linear infinite;
+  padding-top: 40px;
   transition: all 500ms ease;
   margin-left: 1.4rem;
 }
@@ -55,6 +55,7 @@
   font-size: 1.4rem;
   margin-bottom: 3.6rem;
   transition: all 500ms ease;
+  color: var(--text-color);
 }
 
 @keyframes scroll {
@@ -64,9 +65,7 @@
   100% {
     transform: translateY(-100%);
   }
-
 }
-
 
 .header {
   font-size: 1.85rem;
@@ -124,7 +123,7 @@
   height: 14rem;
   flex-shrink: 0;
   border-radius: 1.25rem;
-  background: var(--purple-bg);
+  background-color: var(--card-color);
   color: white;
   margin-top: 0;
   transition: all 500ms ease;
@@ -173,7 +172,7 @@
   font-family: "Montserrat", sans-serif;
 }
 
-@media screen and (max-width : 1400px ) {
+@media screen and (max-width: 1400px) {
   .cards {
     gap: 1rem;
     display: flex;
@@ -181,7 +180,7 @@
     height: 11.25rem;
     flex-shrink: 0;
     border-radius: 1.25rem;
-    background: #4e42b2;
+    background: var(--card-color);
     color: white;
     margin-top: 0;
   }
@@ -195,9 +194,9 @@
     display: flex;
     padding: 0.5rem;
     width: 100%;
-    height: 3rem; 
-    background: rgba(0, 0, 0, 0.6);
-    color: white;
+    height: 3rem;
+    /* background:white; */
+    /* color: white; */
     align-items: center;
     justify-content: center;
     overflow-y: hidden;

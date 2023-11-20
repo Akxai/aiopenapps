@@ -394,7 +394,7 @@ export default function Product() {
                 productData.subCategories.map((subcategory, index) => (
                   <p
                     key={index}
-                    className="bg-[#909090] text-white font-medium font-mont text-[8px] px-2 py-1 rounded-md"
+                    className="bg-[#1E1E24] text-white font-medium font-mont text-[8px] px-2 py-1 rounded-md"
                   >
                     {subcategory}
                   </p>
@@ -405,14 +405,14 @@ export default function Product() {
         <div className="flex items-center space-x-2">
           <button
             href=""
-            className="bg-[#6D5DF3] px-3 py-[6px] lg:py-[5px] xl:py-[5px] md:py-[5px] text-white font-mont text-sm md:text-base font-semibold rounded-md"
+            className="bg-[#1E1E24] px-3 py-[6px] lg:py-[5px] xl:py-[5px] md:py-[5px] text-white font-mont text-sm md:text-base font-semibold rounded-md"
           >
             {productData.price}
           </button>
 
           {isLoggedIn && (
             <button
-              className="bg-[#6D5DF3] px-5 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
+              className="bg-[#1E1E24] px-5 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
               onClick={() => addUpvote(productData.slug.current, useA.uid)}
             >
               {userUpvote.includes(productData.slug.current) ? (
@@ -425,7 +425,7 @@ export default function Product() {
 
           {isLoggedIn && (
             <button
-              className="bg-[#6D5DF3] px-5 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
+              className="bg-[#1E1E24] px-5 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
               onClick={() => addBookmark(productData.slug.current, useA.uid)}
             >
               {userBookmarks.includes(productData.slug.current) ? (
@@ -439,7 +439,7 @@ export default function Product() {
           <Link
             to={productData.url}
             target="_blank"
-            className="bg-[#6D5DF3] px-5 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
+            className="bg-[#1E1E24] px-5 py-1 text-white font-mont text-sm md:text-base font-semibold rounded-md"
           >
             <BiLinkExternal className="w-6 h-6" />
           </Link>

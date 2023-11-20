@@ -1,85 +1,152 @@
-import React from 'react'
-import { useState } from 'react';
-import '../theme/Dark.css'
-import { BsSunFill } from 'react-icons/bs'
-import { FaMoon } from 'react-icons/fa'
+import React from "react";
+import { useState, useEffect } from "react";
+import "../theme/Dark.css";
+import { BsSunFill } from "react-icons/bs";
+import { FaMoon } from "react-icons/fa";
+import DarkMode from "../../src/theme/DarkMode/DarkMode";
+import "../theme/DarkMode/DarkMode.css";
+import { ReactComponent as Sun } from "../theme/DarkMode/Sun.svg";
+import { ReactComponent as Moon } from "../theme/DarkMode/Moon.svg";
 // import { useSelector , useDispatch } from 'react-redux'
 
-function  Dark  () {
+function Dark() {
+  const [backgroundColor, setBackgroundColor] = useState("#000000");
+  const [textColor, setTextColor] = useState("#ffffff");
+  const [hoverColor, setHoverColor] = useState("#ffffff");
+  const [lghtColor, setlghtColor] = useState("#343541");
 
-
-  const [backgroundColor, setBackgroundColor] = useState('#000000');
-  const [textColor, setTextColor] = useState('#ffffff');
-  const [hoverColor, setHoverColor] = useState('#ffffff');
-  const [lghtColor, setlghtColor ] = useState('#343541')
-
-  const handleColorChange = (bgColor,  lghtColor, textColor ,iconColor ,  hoverColor, whiteColor ,shadowColor , floatnavColor , btntextColor , purpleColor , bdyColor , purplebgColor, radColor) => {
+  const handleColorChange = (
+    bgColor,
+    lghtColor,
+    textColor,
+    iconColor,
+    hoverColor,
+    whiteColor,
+    shadowColor,
+    floatnavColor,
+    btntextColor,
+    purpleColor,
+    bdyColor,
+    purplebgColor,
+    radColor,
+    categoryColor,
+    cardColor
+  ) => {
     setBackgroundColor(bgColor);
-    setlghtColor(lghtColor); 
+    setlghtColor(lghtColor);
     setTextColor(textColor);
     setHoverColor(hoverColor);
-    document.documentElement.style.setProperty('--bg-color', bgColor);   
-    document.documentElement.style.setProperty('--color-light', lghtColor);
-    document.documentElement.style.setProperty('--text-color', textColor);
-    document.documentElement.style.setProperty('--icon-color', iconColor);
-    document.documentElement.style.setProperty('--hover-color',hoverColor);
-    document.documentElement.style.setProperty('--white-color',whiteColor);
-    document.documentElement.style.setProperty('--shadow-color',shadowColor);
-    document.documentElement.style.setProperty('--nav-color',floatnavColor);
-    document.documentElement.style.setProperty('--bttxt-color',btntextColor);
-    document.documentElement.style.setProperty('--purple-color',purpleColor);
-    document.documentElement.style.setProperty('--spl-bg',bdyColor);
-    document.documentElement.style.setProperty('--purple-bg',purplebgColor);
-    document.documentElement.style.setProperty('--radtxt-clr',radColor);
+    document.documentElement.style.setProperty("--bg-color", bgColor);
+    document.documentElement.style.setProperty("--color-light", lghtColor);
+    document.documentElement.style.setProperty("--text-color", textColor);
+    document.documentElement.style.setProperty("--icon-color", iconColor);
+    document.documentElement.style.setProperty("--hover-color", hoverColor);
+    document.documentElement.style.setProperty("--white-color", whiteColor);
+    document.documentElement.style.setProperty("--shadow-color", shadowColor);
+    document.documentElement.style.setProperty("--nav-color", floatnavColor);
+    document.documentElement.style.setProperty("--bttxt-color", btntextColor);
+    document.documentElement.style.setProperty("--purple-color", purpleColor);
+    document.documentElement.style.setProperty("--spl-bg", bdyColor);
+    document.documentElement.style.setProperty("--purple-bg", purplebgColor);
+    document.documentElement.style.setProperty("--radtxt-clr", radColor);
+    document.documentElement.style.setProperty(
+      "--category-color",
+      categoryColor
+    );
+    document.documentElement.style.setProperty("--card-color", cardColor);
   };
 
-  const [ dark , setDark ] = useState(true);
+  const [dark, setDark] = useState(false);
 
   const handleDark = () => {
-    if(dark)  {
-      setDark(false)
+    if (!dark) {
+      setDark(true);
+      handleColorChangeAndDark();
+    } else {
+      setDark(false);
+      handleWhite();
     }
-    else {
-      setDark(true)
-    }
-  }
-
+  };
 
   const handleColorChangeAndDark = () => {
-    handleColorChange('#121212','#292929', ' #ffffff' , '#d6d4d4d4' , '','','#ffffff','#292929','#000000','#C76ED7' , '#000000' , '#292929' , '#00FFF2');
-    
+    handleColorChange(
+      "#121212",
+      "#292929",
+      " #ffffff",
+      "#d6d4d4d4",
+      "",
+      "",
+      "#ffffff",
+      "#292929",
+      "#000000",
+      "#92140C",
+      "#000000",
+      "",
+      "#00FFF2",
+      "#ffffff",
+      "#292929"
+    );
   };
 
   const handleWhite = () => {
-    handleColorChange('#ffffff00', '#ffffff', '#000000', '#272727c1' , '#000000', '#0000001a', '#000000', '#000000','#ffffff','#000000','linear-gradient(to bottom,#6d5df3, #7364f4,#7a6bf4, #8071f5,#8678f5,#9385f7,#a093f9,#aca0fa, #c1b7fc,#d6cffe,#ebe7ff,#ffffff' , '#4e42b2' , '#000000');
+    handleColorChange(
+      "#FFF8F0",
+      "#ffffff",
+      "#000000",
+      "#272727c1",
+      "#000000",
+      "#0000001a",
+      "#000000",
+      "#000000",
+      "#ffffff",
+      "#000000",
+      "",
+      "#4e42b2",
+      "#000000",
+      "#1E1E24",
+      "#1E1E24"
+    );
   };
-  
 
   // const { auth , theme } = useSelector( state => state);
   // const dispatch = useDispatch();
 
-
-
+  const handleOne = () => {
+    handleColorChangeAndDark();
+  };
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const handleToggle = () => {
+    if (isDarkMode) {
+      handleWhite();
+      setIsDarkMode(false);
+    } else {
+      handleColorChangeAndDark();
+      setIsDarkMode(true);
+    }
+  };
   return (
     <div className="container background">
-       {
-
-        dark ? 
-
-         (  
-            <div className="bg-1"  onClick={handleColorChangeAndDark}>
-                <BsSunFill className='sun' onClick={handleDark}/>
-              </div> 
-         ) :
-
-         (
-                <div className="bg-1" onClick={handleWhite}  >   
-                    <FaMoon className='moon' onClick={handleDark}/>
-                </div> 
-           )
-       }
-              </div>
-  )
+      <div className="flex justify-center items-center m-5">
+        <label class="switch">
+          <span class="sun">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <g fill="#ffd43b">
+                <circle r="5" cy="12" cx="12"></circle>
+                <path d="m21 13h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm-17 0h-1a1 1 0 0 1 0-2h1a1 1 0 0 1 0 2zm13.66-5.66a1 1 0 0 1 -.66-.29 1 1 0 0 1 0-1.41l.71-.71a1 1 0 1 1 1.41 1.41l-.71.71a1 1 0 0 1 -.75.29zm-12.02 12.02a1 1 0 0 1 -.71-.29 1 1 0 0 1 0-1.41l.71-.66a1 1 0 0 1 1.41 1.41l-.71.71a1 1 0 0 1 -.7.24zm6.36-14.36a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm0 17a1 1 0 0 1 -1-1v-1a1 1 0 0 1 2 0v1a1 1 0 0 1 -1 1zm-5.66-14.66a1 1 0 0 1 -.7-.29l-.71-.71a1 1 0 0 1 1.41-1.41l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.29zm12.02 12.02a1 1 0 0 1 -.7-.29l-.66-.71a1 1 0 0 1 1.36-1.36l.71.71a1 1 0 0 1 0 1.41 1 1 0 0 1 -.71.24z"></path>
+              </g>
+            </svg>
+          </span>
+          <span class="moon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+              <path d="m223.5 32c-123.5 0-223.5 100.3-223.5 224s100 224 223.5 224c60.6 0 115.5-24.2 155.8-63.4 5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6-96.9 0-175.5-78.8-175.5-176 0-65.8 36-123.1 89.3-153.3 6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"></path>
+            </svg>
+          </span>
+          <input type="checkbox" class="input" onClick={handleToggle} />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  );
 }
 
-export default Dark
+export default Dark;

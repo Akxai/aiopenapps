@@ -11,8 +11,9 @@ html {
 
 body {
   /* background: url("../public/bg.png") no-repeat; */
- 
-  background: var(--spl-bg);
+
+  background: var(--bg-color);
+  transition: all 500ms ease;
   /* background: linear-gradient(180deg, #6D5DF3 0%,#6D5DF3 0% , #7364F4 8.98%, #7A6BF4 17.76%, #8071F5 26.07%, #8678F5 34.85%, #9385F7 43.39%, #A093F9 52.89%, #ACA0FA 62.14%, #C1B7FC 71.64%, #D6CFFE 81.13%, #EBE7FF 90.39%, #FFF 100%); */
   background-size: cover;
   background-repeat: no-repeat;
