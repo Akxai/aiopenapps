@@ -211,18 +211,19 @@
 
 .pbtn {
   background-color: #1e1e24;
-  color: var(--bttxt-color);
+  color: white ;
   font-weight: 900;
   transition: all 500ms ease;
   border-radius: 0.4rem;
 }
 .pbttn p {
   background-color: #111d4a;
-  color: var(--bttxt-color);
+  color: white;
   font-weight: 900;
   transition: all 500ms ease;
   border-radius: 0.4rem;
 }
+
 
 .App-link {
   color: #61dafb;
@@ -277,15 +278,18 @@
 }
 
 .btn.active {
-  color: #92140c;
+  color: white;
+  background-color: #92150cd6;
 }
 
 .btn {
   transition: all 300ms ease;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 4px;
+  padding :  0.3rem ;
+  border: 1px solid black;
+  border-radius: 0.5rem;
+  background-color:var(--color-light);
   color: var(--category-color);
 }
 
@@ -295,12 +299,13 @@
 
 .search {
   border: 1px solid var(--text-color);
-  background: rgba(30, 30, 36, 0.5);
-  color: white;
+  border-radius: 2rem;
+  background: white;
+  color: black;
 }
 
 .search::placeholder {
-  color: white;
+  color: black;
 }
 
 .bst {
@@ -310,7 +315,8 @@
 }
 
 .btn:hover {
-  color: #92140c;
+  color: white;
+  background-color: #92150cd6;
 }
 
 .btnbig {
@@ -486,9 +492,9 @@
   color: var(--bttxt-color);
 }
 .pbtnn {
-  background-color: var(--shadow-color);
+  background-color: var(--shadow-color); 
   border-radius: 0.3rem;
-  color: var(--bttxt-color);
+  color: white;
 }
 
 .book {

@@ -135,7 +135,7 @@ function CardItem({ post }) {
                   </h1>
                   {post.price && (
                     <div className="pbtn">
-                      <div className="font-mont font-semibold text-[9px]  rounded-md px-3 py-1.5 flex justify-center items-center">
+                      <div className="font-mont font-semibold text-[9px]  rounded-md px-3 py-1.5 flex justify-center items-center bb">
                         {post.price}
                       </div>
                     </div>

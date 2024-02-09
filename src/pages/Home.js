@@ -128,18 +128,18 @@ export default function Home() {
         </h3>
       </div>
 
-      <div className="flex justify-center items-center mt-8 px-[10%] md:px-[25%] sm:px-[15%] relative">
+      <div className="flex justify-center items-center mt-8 px-[10%] md:px-[25%] sm:px-[15%] text-black relative">
         <input
           id="main-search"
-          type="text"
-          placeholder="Search AI"
-          className="w-full search rounded-md px-4 py-2 placeholder:font-mont placeholder:text-black placeholder:opacity-80 outline-[rgba(30, 30, 36, 0.50)]"
+          type="text" 
+          placeholder="Search AI" 
+          className="w-full search rounded-md px-4 py-2 placeholder:font-mont placeholder:text-black placeholder:opacity-80 ]"
           value={searchTerm}
           onChange={handleSearch}
         />
         <FiSearch className="absolute right-[13%] md:right-[26%] sm:right-[16%] text-gray-600 cursor-pointer" />
       </div>
-
+      
       {/* Price categories */}
       <div className="flex justify-center mt-8 gap-x-4 gap-y-4 flex-wrap px-[10%]">
         <PriceCategory
