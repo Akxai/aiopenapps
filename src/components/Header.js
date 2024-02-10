@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Dark from "../theme/Dark";
 import "../App.css";
 import { FaBullseye } from "react-icons/fa";
+import { MdLogout } from "react-icons/md";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -131,9 +132,12 @@ export default function Header() {
                         Submit
                       </li>
                     </Link>
-                    <button onClick={handleLogout}>
-                      <li className="font-mont cursor-pointer pb-2 text-black hover:bg-gray-100 w-full px-4 py-1 rounded-lg">
-                        Logout
+                    <button
+                      onClick={handleLogout}
+                      className="flex justify-center items-center"
+                    >
+                      <li className="font-mont cursor-pointer pb-2 text-black hover:bg-gray-100 w-full px-4 py-1 rounded-lg flex justify-center items-center">
+                        <MdLogout />
                       </li>
                     </button>
                   </ul>
@@ -235,7 +239,13 @@ export default function Header() {
                     to={"/submit"}
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-[16px] font-mont font-semibold leading-7 text-white hover:text-[#FF9900]"
                   >
-                    {user ? <button onClick={handleLogout}>Logout</button> : ""}
+                    {user ? (
+                      <button onClick={handleLogout}>
+                        <MdLogout />
+                      </button>
+                    ) : (
+                      ""
+                    )}
                   </Link>
                 </div>
               </div>

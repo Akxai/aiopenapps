@@ -115,8 +115,8 @@ export default function Card({ category, priceCategory, searchTerm }) {
 function CardItem({ post }) {
   return (
     <Link to={"/product/" + post.slug.current} key={post.slug.current}>
-      <div className="w-full car card-container">
-        <div className="card-content hover:shadow-2xl hover:-translate-y-2 transition-all">
+      <div className="w-full card-container">
+        <div className="card-content hover:shadow-2xl hover:-translate-y-2 transition-all rounded-full">
           {post.mainImage && (
             <img
               className="rounded-t-3xl object-cover card-image border-t-2 border-r-2 border-l-2 border-black"
