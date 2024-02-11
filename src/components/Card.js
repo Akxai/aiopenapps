@@ -189,7 +189,7 @@ const Pagination = ({ cardsPerPage, totalCards, paginate, currentPage }) => {
 
   return (
     <nav>
-      <ul className="pagination">
+      <ul className="pagination flex flex-wrap justify-center items-center">
         {pageNumbers.map((number) => (
           <li
             key={number}
