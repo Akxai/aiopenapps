@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import sanityClient from "../client.js";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import "../App.css";
 import { Link } from "react-router-dom";
-
-// ... (existing imports)
-
-// ... (existing imports)
 
 export default function Card({ category, priceCategory, searchTerm }) {
   const [postData, setPost] = useState(null);
@@ -42,7 +40,6 @@ export default function Card({ category, priceCategory, searchTerm }) {
 
   useEffect(() => {
     if (postData && postData.length > 0) {
-      // Set tempData to the original postData
       let tempData = [...postData];
 
       if (searchTerm) {
@@ -74,7 +71,6 @@ export default function Card({ category, priceCategory, searchTerm }) {
         tempData = tempData.filter((post) => post.price === priceCategory);
       }
 
-      // Set filteredData to tempData
       setFilteredData(tempData);
     }
   }, [postData, category, priceCategory, searchTerm]);
@@ -107,10 +103,6 @@ export default function Card({ category, priceCategory, searchTerm }) {
     </main>
   );
 }
-
-// ... (remaining code)
-
-// ... (remaining code)
 
 function CardItem({ post }) {
   return (
@@ -167,11 +159,6 @@ function CardItem({ post }) {
                   Visit Page
                 </button>
               </div>
-              {/* <div className="flex justify-start items-center mt-3">
-              <button className="font-mont text-white bg-black text-[8px] font-semibold px-3 py-1.5 rounded-md">
-                Visit Page
-              </button>
-            </div> */}
             </div>
           </div>
         </div>
@@ -187,20 +174,58 @@ const Pagination = ({ cardsPerPage, totalCards, paginate, currentPage }) => {
     pageNumbers.push(i);
   }
 
+  const handleRightArrowClick = () => {
+    const pagarrow = document.querySelector(".pagarrow");
+    if (pagarrow) {
+      pagarrow.scrollLeft += 3 * 16;
+    }
+  };
+
+  const handleLeft = () => {
+    const pagarrow = document.querySelector(".pagarrow");
+    if (pagarrow) {
+      pagarrow.scrollLeft -= 3 * 16;
+    }
+  };
+
   return (
-    <nav>
-      <ul className="pagination flex flex-wrap justify-center items-center">
-        {pageNumbers.map((number) => (
-          <li
-            key={number}
-            className={`pagi ${currentPage === number ? "active" : ""}`}
-          >
-            <button className="b" onClick={() => paginate(number)}>
-              {number}
-            </button>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <div className="paa">
+      <div className="pagarrow">
+        <nav className="pagi-right">
+          <div>
+            <ul className="pagination" style={{ marginRight: "15px" }}>
+              {pageNumbers.map((number) => (
+                <li
+                  key={number}
+                  className={`pagi ${currentPage === number ? "active" : ""}`}
+                  onClick={() => paginate(number)}
+                >
+                  <button className="b">{number}</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <FaArrowLeftLong className="left" onClick={handleLeft} />
+      <FaArrowRightLong className="rght" onClick={handleRightArrowClick} />
+      <nav>
+        <div className="mobile">
+          <div>
+            <ul className="pagination">
+              {pageNumbers.map((number) => (
+                <li
+                  key={number}
+                  className={`pagii ${currentPage === number ? "active" : ""}`}
+                  onClick={() => paginate(number)}
+                >
+                  <button className="b">{number}</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
   );
 };
